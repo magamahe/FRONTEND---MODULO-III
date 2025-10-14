@@ -1,0 +1,22 @@
+/* ============================= */
+/* Estilos generales opcionales  */
+/* ============================= */
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/* ============================= */
+/* Ejercicio 2: clase oculto     */
+/* ============================= */
+.oculto {
+  display: none;
+}
+
+/* ===================================== */
+/* Ejercicio 4: clase destacado          */
+/* ===================================== */
+.destacado {
+  background-color: yellow;
+  font-weight: bold;
+}

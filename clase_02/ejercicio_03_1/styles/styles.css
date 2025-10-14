@@ -1,0 +1,13 @@
+#miDiv {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    min-height: 50px;
+}
+input {
+    width: 300px;
+    padding: 5px;
+}
+button {
+    margin-left: 5px;
+}
