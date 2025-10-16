@@ -1,0 +1,28 @@
+    body {
+      background-color: #0f0f0f;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding: 40px;
+      transition: background-color 0.5s;
+    }
+    button {
+      background: linear-gradient(45deg, #7b2ff7, #f107a3);
+      border: none;
+      padding: 15px 30px;
+      border-radius: 12px;
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+    #mensaje {
+      margin-top: 40px;
+      font-size: 22px;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .visible { opacity: 1; }

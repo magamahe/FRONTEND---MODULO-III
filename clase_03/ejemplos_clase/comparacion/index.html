@@ -1,0 +1,35 @@
+<div id="caja">
+    <p style="display:none">Texto oculto</p>
+    Hola <b>Mundo</b>
+</div>
+
+<button id="btnInnerText">innerText</button>
+<button id="btnTextContent">textContent</button>
+<button id="btnInnerHTML">innerHTML</button>
+
+<script>
+    const caja = document.getElementById("caja");
+
+    // 1️⃣ innerText → Muestra SOLO el texto visible, respeta estilos (display:none)
+    document.getElementById("btnInnerText").addEventListener("click", () => {
+        alert(caja.innerText);
+        // Resultado:
+        // Hola Mundo   (NO muestra el <p hidden>)
+    });
+
+    // 2️⃣ textContent → Muestra TODO el texto, incluso el oculto, NO respeta estilos
+    document.getElementById("btnTextContent").addEventListener("click", () => {
+        alert(caja.textContent);
+        // Resultado:
+        // Texto oculto
+        // Hola Mundo   (muestra el texto oculto)
+    });
+
+    // 3️⃣ innerHTML → Devuelve el HTML completo con etiquetas
+    document.getElementById("btnInnerHTML").addEventListener("click", () => {
+        alert(caja.innerHTML);
+        // Resultado:
+        // <p style="display:none">Texto oculto</p>
+        // Hola <b>Mundo</b>
+    });
+</script>
