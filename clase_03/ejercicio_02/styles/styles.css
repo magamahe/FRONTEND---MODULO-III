@@ -1,0 +1,51 @@
+/* ========================= */
+/* ESTILO GENERAL DE LA PÁGINA */
+/* ========================= */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff5f5; /* fondo pastel */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Título */
+h1 {
+    color: #ff6f61;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+/* Enlace estilo botón */
+a {
+    padding: 10px 20px;
+    background-color: #ffbaba;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    margin: 10px;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    background-color: #ff9a9a;
+}
+
+/* Contenedor de mensajes dinámicos */
+#mensajes {
+    margin-top: 20px;
+    width: 90%;
+    max-width: 500px;
+}
+
+#mensajes p {
+    background-color: #fff0f0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+}

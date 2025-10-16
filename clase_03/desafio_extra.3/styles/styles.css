@@ -1,0 +1,79 @@
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #2c3e50;
+    font-family: 'Verdana', sans-serif;
+    color: white;
+    flex-direction: column;
+}
+
+#game-container {
+    text-align: center;
+    padding: 30px;
+    background: #34495e;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-width: 600px;
+}
+
+#title {
+    color: #ecf0f1;
+    margin-bottom: 10px;
+}
+
+#instructions {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+#score-display {
+    font-size: 1.2em;
+    color: #f1c40f;
+    margin-bottom: 20px;
+}
+
+#color-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.color-choice {
+    height: 100px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.1s;
+    border: 3px solid #34495e; /* Borde para separación */
+}
+
+.color-choice:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+#start-btn {
+    padding: 10px 30px;
+    cursor: pointer;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 30px;
+    transition: background-color 0.2s;
+}
+
+#start-btn:hover { background-color: #c0392b; }
+#start-btn:disabled { background-color: #95a5a6; cursor: not-allowed; }
+
+/* Clases de estado */
+.correct { background-color: #2ecc71 !important; }
+.incorrect { background-color: #e74c3c !important; }

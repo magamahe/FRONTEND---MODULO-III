@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff5f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #ff6f61;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el input */
+input[type="text"] {
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 8px;
+    border: 1px solid #ffbaba;
+    margin-bottom: 20px;
+    width: 250px;
+}
+
+/* Contenedor de mensajes */
+#mensajes {
+    margin-top: 10px;
+    width: 90%;
+    max-width: 400px;
+}
+
+#mensajes p {
+    background-color: #fff0f0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+}
