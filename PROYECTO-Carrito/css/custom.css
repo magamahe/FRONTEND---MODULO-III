@@ -1,0 +1,455 @@
+/* ========================================================= */
+/* === CUSTOM STYLES (VERSIÓN FINAL Y DEFINITIVA)        === */
+/* ========================================================= */
+
+/* --- BASE Y TIPOGRAFÍA --- */
+
+html {
+    font-size: 62.5%;
+}
+body {
+    /* Fuente mejorada para mejor legibilidad */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f3f3;
+}
+h1 {
+    text-align: center;
+    font-size: 3.8rem;
+    color: #333;
+    font-weight: 700;
+}
+h2 {
+    font-size: 3.6rem;
+    margin-top: 0;
+}
+h4 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #444;
+}
+
+/* Color principal para enlaces */
+a {
+    color: #e44e52; 
+    text-decoration: none;
+}
+
+/* --- HEADER Y NAVEGACIÓN --- */
+
+header {
+    padding: 20px 0 0 0;
+    background: white;
+    text-align: center;
+    border-bottom: 1px solid #e1e1e1;
+}
+@media (min-width: 750px) {
+    header {
+        text-align: left;
+    }
+}
+
+/* --- CARRITO (SUBMENU) --- */
+
+ul {
+    list-style: none;
+    margin: 0;
+}
+.submenu {
+    position: relative;
+}
+
+.submenu #carrito{
+    display: none;
+}
+.submenu:hover #carrito{
+    display: block;
+    position: absolute;
+    right:0;
+    top:100%;
+    z-index: 10;
+    background-color: white;
+    padding: 20px;
+    min-height: 400px;
+    min-width: 300px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.vacio {
+    padding: 10px;
+    background-color: crimson;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+}
+
+.borrar-curso {
+    background-color: red;
+    border-radius: 50%;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    line-height: 1;
+    display: inline-block;
+    vertical-align: middle; 
+}
+
+/* ----------------------------------------------- */
+/* === ESTILOS ESPECÍFICOS DE LA TABLA CARRITO === */
+/* ----------------------------------------------- */
+
+#lista-carrito th, #lista-carrito td {
+    text-align: center;
+    padding: 8px 5px; 
+    vertical-align: middle;
+}
+
+#lista-carrito img {
+    max-width: 50px;
+    height: auto;
+    vertical-align: middle;
+}
+
+/* Estilo para que el nombre quede mejor alineado */
+#lista-carrito tbody tr td:nth-child(2) {
+    text-align: left;
+    padding-left: 10px;
+}
+
+/* Contenedor Flex para la Cantidad: - | 1 | + */
+.cantidad-control {
+    display: flex;
+    align-items: center; /* Alineación vertical */
+    justify-content: center; /* Centrado horizontal en la celda */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden; 
+    /* Forzar ancho pequeño para que quepa en la columna */
+    max-width: 100px; 
+    margin: 0 auto; /* Centrar el control dentro de la celda */
+}
+
+/* Estilizando los botones - y + */
+.cantidad-control button {
+    /* Anulamos los estilos de Skeleton que fuerzan altura y margen */
+    margin: 0;
+    height: 30px; 
+    
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    font-size: 2.0rem; 
+    font-weight: 300;
+    padding: 5px 10px;
+    color: #555;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    
+    /* Añadimos separadores ligeros */
+    border-right: 1px solid #eee; 
+}
+
+/* Quitamos el borde derecho del botón + y añadimos el izquierdo */
+.cantidad-control button:last-of-type {
+    border-right: none;
+    border-left: 1px solid #eee;
+}
+
+.cantidad-control button:hover {
+    background-color: #f0f0f0;
+    color: #e44e52; 
+}
+
+/* Estilizando el campo numérico (Cantidad) */
+.cantidad-input {
+    /* Anulamos los estilos de Skeleton que fuerzan altura, bordes y margen */
+    margin: 0;
+    height: 30px;
+    
+    width: 35px; 
+    text-align: center;
+    border: none; 
+    padding: 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+    
+    /* Eliminar flechas de incremento/decremento en navegadores modernos */
+    -moz-appearance: textfield; 
+}
+.cantidad-input::-webkit-outer-spin-button,
+.cantidad-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Estilo para el total */
+#lista-carrito + a {
+    margin-top: 15px;
+}
+.total-carrito {
+    text-align: right;
+    font-weight: 700;
+    font-size: 2.0rem;
+    padding-top: 15px;
+}
+.total-carrito td {
+    border-top: 1px solid #ddd;
+}
+
+
+/* Botón de Vaciar Carrito */
+#vaciar-carrito {
+    margin-top: 15px;
+    background-color: #e44e52;
+    border-color: #e44e52;
+}
+#vaciar-carrito:hover {
+    background-color: #741d51;
+    border-color: #741d51;
+}
+
+/* ----------------------------------------------- */
+/* === CONTINUACIÓN DE ESTILOS ANTERIORES === */
+/* ----------------------------------------------- */
+
+/* --- SECCIÓN HERO Y BÚSQUEDA --- */
+
+#hero {
+    background-image:url(../img/hero.jpg);
+    height: 350px;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+#hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    z-index: 1;
+}
+#hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.contenido-hero {
+    margin-top: 80px;
+    color: white;
+}
+.contenido-hero h2 {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+.contenido-hero p {
+    font-size: 2rem;
+    font-weight: 300;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+.contenido-hero form {
+    position: relative;
+    margin-bottom: 0;
+}
+.contenido-hero form #buscador {
+    height: 50px;
+    margin-bottom: 0;
+    border-radius: 5px 0 0 5px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.contenido-hero form .submit-buscador {
+    position: absolute;
+    right:0;
+    top:0;
+    height: 100%;
+    padding: 0;
+    display: block;
+    text-indent: -9999px;
+    width: 50px;
+    background-image: url(../img/lupa.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+}
+
+
+/* --- BARRA DE ICONOS --- */
+
+.barra {
+    padding: 30px 0;
+    background: #741d51; 
+    background: -moz-linear-gradient(left, #741d51 0%, #e44e52 100%); 
+    background: -webkit-linear-gradient(left, #741d51 0%,#e44e52 100%); 
+    background: linear-gradient(to right, #741d51 0%,#e44e52 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#741d51', endColorstr='#e44e52',GradientType=1 ); 
+}
+
+.barra p {
+    margin:0;
+    color: white;
+}
+.icono {
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding-left: 60px;
+    background-size: 40px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+@media (min-width: 750px) {
+    .icono {
+        margin-bottom:0;
+    }
+}
+.icono1 {
+    background-image: url(../img/icono1.png);
+}
+.icono2 {
+    background-image: url(../img/icono2.png);
+}
+.icono3 {
+    background-image: url(../img/icono3.png);
+}
+
+/* --- LISTA DE CURSOS Y ALINEACIÓN DE CARDS (FLEXBOX) --- */
+
+#encabezado {
+    margin: 30px 0;
+}
+
+/* SOLUCIÓN DE ALINEACIÓN DE CARDS */
+
+#lista-cursos .row {
+    margin-bottom: 20px;
+    display: flex; 
+    flex-wrap: wrap; 
+    align-items: stretch; /* Estira todas las columnas a la misma altura */
+}
+
+.card {
+    text-align: center;
+    border: 1px solid #e1e1e1;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* CARD FLEX: Para empujar el botón y el precio final al fondo */
+    display: flex;
+    flex-direction: column; 
+    height: 100%; 
+}
+
+.card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.imagen-curso {
+    display: block; 
+}
+
+.info-card {
+    padding: 15px 20px;
+    flex-grow: 1; /* Esto hace que el contenedor de info use todo el espacio vertical sobrante */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contenedor de estrellas y precios: Debe ir al fondo de info-card */
+.info-adicional {
+    display: flex; 
+    justify-content: space-between; /* Estrellas a la izquierda, precios a la derecha */
+    align-items: center; 
+    margin-top: 5px; 
+    margin-bottom: 15px; /* Espacio antes del botón */
+    margin-top: auto; /* ESTO LO EMPUJA AL FONDO DE info-card, alineado con los demás */
+}
+
+.info-adicional img {
+    height: 18px; 
+    width: auto;
+}
+
+
+.info-card p, 
+.card h4 {
+    margin-bottom: 5px;
+}
+
+/* Estilo para el contenedor de precios (NO LLEVA TACHADO) */
+.info-card .precio {
+    text-decoration: none; 
+    font-size: 1.6rem;
+    color: #999; 
+    margin: 0; 
+    white-space: nowrap;
+}
+
+/* Estilo para el PRECIO ORIGINAL (TACHADO) */
+.info-card .precio .precio-original {
+    text-decoration: line-through; 
+    color: #999; 
+    margin-right: 5px;
+}
+
+/* Estilo para el precio de oferta (ROJO, NO TACHADO) */
+.info-card .precio .oferta {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: #e44e52; 
+    margin-left: 10px; 
+}
+
+
+.agregar-carrito {
+    margin: 0 0 10px 0;
+    
+    /* Colores del botón primario */
+    background-color: #741d51; 
+    border-color: #741d51;
+    color: white;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.agregar-carrito:hover {
+    background-color: #e44e52;
+    border-color: #e44e52;
+}
+
+@media (min-width: 550px) {
+    .card {
+        text-align: left;
+    }
+}
+
+/* --- FOOTER --- */
+
+.footer {
+    margin-top: 40px;
+    border-top: 1px solid #ccc;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    background-color: #f9f9f9;
+}
+.footer .menu a {
+    display: block;
+    margin-bottom: 8px;
+    text-decoration: none;
+    color: #555;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+.footer .menu a:hover {
+    color: #e44e52;
+}
