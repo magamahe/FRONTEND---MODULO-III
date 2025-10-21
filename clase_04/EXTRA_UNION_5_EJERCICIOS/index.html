@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Completo Interactivo</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <form class="formulario" id="formulario">
+    <h2>Formulario Completo</h2>
+
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="text" id="apellido" placeholder="Apellido" required>
+    <input type="email" id="correo" placeholder="Correo electrónico" required>
+    <input type="date" id="fechaNacimiento" placeholder="Fecha de Nacimiento" required>
+    <select id="pais" required>
+      <option value="">Selecciona tu país</option>
+      <option value="Argentina">Argentina</option>
+      <option value="Chile">Chile</option>
+      <option value="Uruguay">Uruguay</option>
+      <option value="Brasil">Brasil</option>
+      <option value="Otro">Otro</option>
+    </select>
+    <input type="number" id="dni" placeholder="DNI" required>
+
+    <p>Tipos de música que te gustan:</p>
+    <label><input type="checkbox" name="musica" value="Rock"> Rock</label>
+    <label><input type="checkbox" name="musica" value="Pop"> Pop</label>
+    <label><input type="checkbox" name="musica" value="Jazz"> Jazz</label>
+    <label><input type="checkbox" name="musica" value="Clásica"> Clásica</label>
+
+    <p>¿Te gusta programar?</p>
+    <label><input type="radio" name="programar" value="Sí" required> Sí</label>
+    <label><input type="radio" name="programar" value="No"> No</label>
+
+    <textarea id="comentarios" rows="3" placeholder="Comentarios (máx 50 caracteres)" maxlength="50"></textarea>
+    <div id="contador">0 / 50</div>
+
+    <button type="submit">Enviar</button>
+
+    <p id="resultado"></p>
+  </form>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>
