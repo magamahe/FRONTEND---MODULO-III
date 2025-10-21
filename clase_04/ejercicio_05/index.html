@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicio 5 - URL dinámica</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <main class="contenedor">
+    <h1>🔗 Generar URL dinámica</h1>
+    <form id="formNombre">
+      <label for="nombre">Ingresa tu nombre:</label>
+      <input type="text" id="nombre" placeholder="Ejemplo: María" />
+      <button type="submit">Enviar</button>
+      <p id="mensajeError"></p>
+    </form>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const formulario = document.getElementById("formNombre");
+      const inputNombre = document.getElementById("nombre");
+      const mensajeError = document.getElementById("mensajeError");
+
+      formulario.addEventListener("submit", (event) => {
+        event.preventDefault(); // evita recargar la página
+
+        const nombre = inputNombre.value.trim();
+
+        // Validamos que el campo no esté vacío
+        if (nombre === "") {
+          mensajeError.textContent = "⚠️ Por favor ingresa tu nombre.";
+          mensajeError.style.color = "red";
+          return;
+        }
+
+        // Redirigimos a la nueva página con el parámetro ?nombre=...
+        const url = `bienvenida.html?nombre=${encodeURIComponent(nombre)}`;
+        location.href = url;
+      });
+    });
+  </script>
+</body>
+</html>

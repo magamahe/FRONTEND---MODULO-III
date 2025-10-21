@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario - Clase 4</title>
+  <!-- Vinculamos el CSS -->
+  <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+  <h1>Capturando y mostrando datos de un formulario</h1>
+
+  <!-- Formulario con dos campos y un botón -->
+  <form id="formulario">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" placeholder="Escribe tu nombre" required>
+
+    <label for="edad">Edad:</label>
+    <input type="number" id="edad" placeholder="Ingresa tu edad" required>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- Contenedor donde mostraremos los resultados -->
+  <div id="resultado"></div>
+
+  <!-- Vinculamos el archivo JS -->
+  <script src="./js/scripts.js"></script>
+</body>
+</html>

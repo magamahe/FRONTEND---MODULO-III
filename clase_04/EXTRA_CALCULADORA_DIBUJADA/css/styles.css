@@ -1,0 +1,77 @@
+  body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #000; /* Fondo negro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.calculadora {
+  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364); /* Degradé azul-verde */
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 255, 200, 0.4);
+  width: 280px;
+}
+
+#display {
+  width: 100%;
+  height: 60px;
+  background-color: rgba(255,255,255,0.05); /* Transparencia leve */
+  border-radius: 15px;
+  margin-bottom: 15px;
+  text-align: right;
+  padding: 10px;
+  font-size: 28px;
+  color: #00ffc6; /* Verde neón */
+  box-sizing: border-box;
+  overflow-x: auto;
+  text-shadow: 0 0 8px #00ffc6;
+}
+
+.fila {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.boton {
+  flex: 1;
+  margin: 3px;
+  height: 60px;
+  font-size: 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(145deg, #00c6ff, #0072ff);
+  color: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  transition: all 0.2s ease-in-out;
+}
+
+.boton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+}
+
+.boton-operacion {
+  background: linear-gradient(145deg, #00ffcc, #009688); /* Verde-azul */
+}
+
+.boton-operacion:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0,255,200,0.5);
+}
+
+.boton-igual {
+  background: linear-gradient(145deg, #00ffcc, #00bfa5);
+  color: #000;
+  font-weight: bold;
+}
+
+.boton-igual:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0,255,200,0.7);
+}

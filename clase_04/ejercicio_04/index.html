@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicio 4 - Selección con Radio y Checkbox</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <main class="contenedor">
+    <h1>🎨 Selección de opciones</h1>
+
+    <form id="formOpciones">
+      <section class="bloque">
+        <h2>Elige tu color favorito:</h2>
+        <label><input type="radio" name="color" value="Rojo"> Rojo 🔴</label><br>
+        <label><input type="radio" name="color" value="Verde"> Verde 🟢</label><br>
+        <label><input type="radio" name="color" value="Azul"> Azul 🔵</label>
+      </section>
+
+      <section class="bloque">
+        <h2>Selecciona tus pasatiempos:</h2>
+        <label><input type="checkbox" name="hobby" value="Codear"> Codear 📚</label><br>
+        <label><input type="checkbox" name="hobby" value="Deporte"> Deporte 🍳</label><br>
+        <label><input type="checkbox" name="hobby" value="Viajar"> Viajar ✈️</label>
+      </section>
+
+      <button type="submit">Mostrar selección</button>
+      <p id="resultado"></p>
+    </form>
+  </main>
+
+  <script src="./js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bienvenida</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <main class="contenedor">
+    <h1 id="saludo">Cargando...</h1>
+    <a href="index.html" class="volver">⬅ Volver al inicio</a>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Obtenemos los parámetros de la URL
+      const parametros = new URLSearchParams(location.search);
+      const nombre = parametros.get("nombre");
+
+      const saludo = document.getElementById("saludo");
+
+      if (nombre) {
+        saludo.textContent = `👋 ¡Bienvenida, ${nombre}!`;
+      } else {
+        saludo.textContent = "⚠️ No se proporcionó ningún nombre.";
+      }
+    });
+  </script>
+</body>
+</html>

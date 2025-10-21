@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 2 - Validación de Formulario</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <h1>Validación de Formulario</h1>
+
+  <!-- Formulario -->
+  <form id="formulario">
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" placeholder="tuemail@ejemplo.com">
+    <!-- Aquí mostraremos el mensaje de error del email -->
+    <p id="errorEmail" class="error"></p>
+
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" placeholder="Mínimo 6 caracteres">
+    <!-- Aquí mostraremos el mensaje de error de la contraseña -->
+    <p id="errorPassword" class="error"></p>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- Contenedor para mostrar el resultado -->
+  <div id="resultado"></div>
+
+  <script src="./js/scripts.js"></script>
+</body>
+</html>
