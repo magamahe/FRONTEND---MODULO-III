@@ -1,0 +1,76 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f6fa;
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.acordeon-container {
+  width: 600px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4a4a4a;
+}
+
+.acordeon-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.acordeon-titulo {
+  cursor: pointer;
+  font-weight: 600;
+  background: none;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
+  color: #0078d7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.acordeon-titulo:hover {
+  color: #005fa3;
+}
+
+.acordeon-titulo::after {
+  content: '+';
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.acordeon-titulo.active::after {
+  content: '−';
+  transform: rotate(180deg);
+  color: #005fa3;
+}
+
+.acordeon-contenido {
+  display: none;
+  padding-left: 10px;
+  margin-top: 8px;
+  color: #555;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+}
+
+.acordeon-contenido.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

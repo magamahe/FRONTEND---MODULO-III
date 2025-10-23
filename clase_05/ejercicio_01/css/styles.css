@@ -1,0 +1,79 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafc;
+  color: #333;
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.faq-container {
+  width: 600px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4a4a4a;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.faq-question {
+  cursor: pointer;
+  font-weight: 600;
+  color: #0078d7;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question:hover {
+  color: #005a9e;
+}
+
+.faq-answer {
+  display: none;
+  margin-top: 8px;
+  color: #555;
+  line-height: 1.5;
+  padding-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.faq-question::after {
+  content: '+';
+  font-size: 20px;
+  color: #0078d7;
+  transition: transform 0.3s ease;
+}
+
+.faq-question.active::after {
+  content: '−';
+  transform: rotate(180deg);
+  color: #005a9e;
+}
+
+.faq-answer.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

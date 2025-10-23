@@ -260,7 +260,31 @@ ul {
     border-radius: 5px 0 0 5px;
     border: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-right: 90px;
+    position: relative; 
+    color: #333; /* O un color más oscuro, como black; */ 
+    background-color: white;
 }
+
+.btn-borrar {
+    position: absolute;
+    /* Ajustamos la posición: 50px es el ancho de la lupa. Lo movemos 5px más a la izquierda */
+    right: 55px; 
+    top: 50%;
+    transform: translateY(-50%); /* Centrado vertical */
+    
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+    
+    display: none; /* **IMPORTANTE: Inicialmente oculto por CSS, lo muestra JS** */
+    z-index: 10; /* Asegura que esté por encima del input */
+    
+    /* Pequeño margen para hacer clic más fácil */
+    padding: 5px; 
+}
+
 .contenido-hero form .submit-buscador {
     position: absolute;
     right:0;
@@ -276,6 +300,7 @@ ul {
     background-color: white;
     border: none;
     border-radius: 0 5px 5px 0;
+    z-index: 15;
 }
 
 

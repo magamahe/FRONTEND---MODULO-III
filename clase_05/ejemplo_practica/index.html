@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Online Ejemplo</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="claro">
+
+  <!-- Sidebar -->
+  <button id="toggleSidebar">☰ Menú</button>
+  <div id="sidebar" class="sidebar">
+    <a href="#" class="close-btn" id="closeSidebar">&times;</a>
+    <a href="#productos">Productos</a>
+    <a href="#faq">FAQ</a>
+    <a href="#detalles">Detalles</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+
+    <!-- Toggle Tema -->
+    <button id="toggleTema">Modo Oscuro</button>
+
+    <header>
+      <h1>Tienda Online Ejemplo</h1>
+      <p>Bienvenida, descubre nuestros productos y promociones.</p>
+    </header>
+
+    <!-- Productos con Acordeón -->
+    <section id="productos">
+      <h2>Productos Destacados</h2>
+
+      <div class="acordeon-item">
+        <button class="acordeon-titulo">Producto 1</button>
+        <div class="acordeon-contenido">
+          Detalles del Producto 1. Precio: $1000. <button class="comprar-btn">Comprar</button>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <button class="acordeon-titulo">Producto 2</button>
+        <div class="acordeon-contenido">
+          Detalles del Producto 2. Precio: $2000. <button class="comprar-btn">Comprar</button>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <button class="acordeon-titulo">Producto 3</button>
+        <div class="acordeon-contenido">
+          Detalles del Producto 3. Precio: $1500. <button class="comprar-btn">Comprar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Collapse -->
+    <section id="faq">
+      <h2>Preguntas Frecuentes</h2>
+      <div class="faq-item">
+        <button class="faq-question">¿Cuál es el tiempo de entrega?</button>
+        <div class="faq-answer">El envío se realiza entre 3 y 5 días hábiles.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">¿Puedo devolver un producto?</button>
+        <div class="faq-answer">Sí, aceptamos devoluciones dentro de los 30 días posteriores a la compra.</div>
+      </div>
+    </section>
+
+    <!-- Detalles extra -->
+    <section id="detalles">
+      <h2>Detalles del Servicio</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>Correo: info@tiendaejemplo.com</p>
+    </section>
+
+  </div>
+
+  <!-- Modal de Confirmación -->
+  <div id="overlay" class="overlay"></div>
+  <div id="modal" class="modal">
+    <p>¿Deseas confirmar tu compra?</p>
+    <button id="cerrarModal">Cancelar</button>
+    <button id="confirmarCompra">Confirmar</button>
+  </div>
+
+  <script src="./js/scripts.js"></script>
+</body>
+</html>
