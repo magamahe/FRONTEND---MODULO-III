@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas Pendientes ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+<div class="app-container">
+    <h1>To-Do List 📝</h1>
+
+    <form id="formulario" class="form-add-task">
+        <input type="text" id="tarea" placeholder="Escribe tu nueva tarea aquí..." required>
+        <select id="categoria" aria-label="Selecciona la categoría de la tarea">
+            <option value="Trabajo">💼 Trabajo</option>
+            <option value="Estudio">📚 Estudio</option>
+            <option value="Personal">🏠 Personal</option>
+        </select>
+        <button type="submit" class="btn-primary" aria-label="Agregar tarea">
+            <span class="desktop-text">Agregar</span>
+            <span class="mobile-icon">+</span>
+        </button>
+    </form>
+
+    <div class="filter-controls">
+        <label for="filtro">Filtrar por:</label>
+        <select id="filtro" aria-label="Filtrar tareas por categoría">
+            <option value="Todas">Todas</option>
+            <option value="Trabajo">💼 Trabajo</option>
+            <option value="Estudio">📚 Estudio</option>
+            <option value="Personal">🏠 Personal</option>
+        </select>
+        <button id="btnFiltrar" class="btn-secondary">Aplicar Filtro</button>
+    </div>
+
+    <div id="lista-tareas">
+        </div>
+
+    <button id="borrar-todo" class="btn-danger">
+        Borrar todas las tareas
+    </button>
+</div>
+
+<script src="./js/script.js"></script>
+</body>
+</html>

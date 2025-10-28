@@ -1,0 +1,232 @@
+/* Variables CSS para consistencia */
+:root {
+    --primary-color: #4A90E2; /* Azul vibrante */
+    --secondary-color: #50E3C2; /* Verde/Cian para contraste */
+    --danger-color: #FF6161; /* Rojo */
+    --bg-light: #F8F9FA; /* Fondo muy claro */
+    --text-color: #333333;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos Generales y Tipografía */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alineación superior para evitar saltos */
+    min-height: 100vh;
+    padding: 40px 15px;
+    font-family: 'Poppins', sans-serif; /* Fuente moderna */
+    background: var(--bg-light);
+    color: var(--text-color);
+}
+
+.app-container {
+    width: 100%;
+    max-width: 550px; /* Ancho máximo para el contenedor de la app */
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* --- Componentes de Formulario y Botones --- */
+input, select, button {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease-in-out;
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* Formulario de Añadir Tarea (Flexbox) */
+.form-add-task {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.form-add-task input {
+    flex-grow: 1; /* El input de texto ocupa el espacio restante */
+}
+
+/* Estilos de Botones */
+button {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+}
+
+.btn-primary:hover {
+    background-color: #3A7ABD;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    width: 100%; /* Ocupa todo el ancho */
+    margin-top: 25px;
+    padding: 12px;
+}
+
+.btn-danger:hover {
+    background-color: #D64545;
+}
+
+/* --- Controles de Filtro --- */
+.filter-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #f0f4f8; /* Fondo sutil */
+    border-radius: 8px;
+}
+
+.filter-controls label {
+    font-weight: 600;
+    color: #555;
+}
+
+/* --- Lista y Elementos de Tarea --- */
+#lista-tareas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tarea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fdfdfd;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    border-left: 5px solid var(--secondary-color); /* Indicador de categoría visual */
+}
+
+.tarea-content {
+    flex-grow: 1;
+    cursor: pointer;
+    padding-right: 15px;
+}
+
+.tarea-content p {
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.tarea-category {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 2px;
+}
+
+.tarea.completada {
+    background: #EAF3FE; /* Fondo claro para completada */
+    opacity: 0.8;
+    border-left-color: #ccc;
+}
+
+.tarea.completada .tarea-content p {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* Botón de eliminar en cada tarea */
+.tarea button {
+    padding: 8px 15px;
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    font-size: 0.9rem;
+}
+
+.tarea button:hover {
+    background-color: #D64545;
+}
+
+/* --- Responsividad Móvil (Menos de 600px) --- */
+@media (max-width: 600px) {
+    .app-container {
+        padding: 20px;
+        border-radius: 0; /* Opcional: llenar el ancho del móvil */
+        box-shadow: none;
+    }
+
+    /* Input y Select ocupan todo el ancho, botón abajo */
+    .form-add-task {
+        flex-wrap: wrap;
+    }
+
+    .form-add-task input,
+    .form-add-task select {
+        width: 100%;
+        flex-basis: 100%;
+        margin-bottom: 5px;
+    }
+    
+    .form-add-task button {
+        width: 100%;
+    }
+
+    /* Icono en móvil para el botón de agregar */
+    .desktop-text {
+        display: none;
+    }
+    .mobile-icon {
+        display: inline;
+        font-size: 1.2rem;
+    }
+    
+    /* Filtro en móvil */
+    .filter-controls {
+        flex-wrap: wrap;
+    }
+    .filter-controls label {
+        flex-basis: 100%;
+    }
+    .filter-controls select {
+        flex-grow: 1;
+    }
+}
