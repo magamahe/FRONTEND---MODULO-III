@@ -1,4 +1,3 @@
-// app.js - To-Do App
 
 // 1) Referencias al DOM
 const formulario = document.getElementById("formulario");
@@ -61,11 +60,20 @@ function mostrarTareas() {
     p.textContent = `${tarea.texto} - Categoría: ${tarea.categoria}`;
     p.style.cursor = "pointer";
 
+
     // marcar completada usando el id como referencia
-    p.addEventListener("click", () => {
+    /* p.addEventListener("click", () => {
       marcarCompletadaPorId(tarea.id);
     });
+ */
+      // 📌 BOTÓN "Completar" — cambia el estado de la tarea
+    const btnCompletar = document.createElement("button");
+    btnCompletar.textContent = tarea.completada ? "Desmarcar" : "Completar";
+    btnCompletar.addEventListener("click", () => {
+    marcarCompletadaPorId(tarea.id);
+    });
 
+    // 📌 BOTÓN "Eliminar" — borra la tarea
     const btnEliminar = document.createElement("button");
     btnEliminar.textContent = "Eliminar";
 
@@ -75,7 +83,9 @@ function mostrarTareas() {
     });
 
     div.appendChild(p);
+    div.appendChild(btnCompletar);
     div.appendChild(btnEliminar);
+    
     listaTareas.appendChild(div);
   });
 }

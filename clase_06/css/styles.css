@@ -45,7 +45,7 @@ button:hover {
 /* Lista de tareas */
 #lista-tareas {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -67,7 +67,7 @@ button:hover {
 }
 
 .borrar-todo {
-  margin-top: 20px;
+  margin-top: 30px;
   background-color: #e53935;
 }
 
