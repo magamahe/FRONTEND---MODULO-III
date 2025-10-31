@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitio de Chocolate Bootstrap</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg fixed-top shadow-sm"
+      role="navigation"
+      aria-label="main navigation"
+      style="background-color: #ffffff"
+    >
+      <div class="container">
+        <a class="navbar-brand me-3" href="#">
+          <span class="fs-4 text-primary"><i class="fas fa-seedling"></i></span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navMenu" class="collapse navbar-collapse">
+          <ul
+            class="navbar-nav mx-auto mb-2 mb-lg-0 w-100 justify-content-center"
+          >
+            <li class="nav-item">
+              <a class="nav-link fw-semibold" href="#tipos">Tipos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold" href="#recetas">Recetas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold" href="#faq">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold" href="#contacto">Contacto</a>
+            </li>
+          </ul>
+
+          <div class="d-none d-lg-flex align-items-center">
+            <span class="fs-5 text-warning me-2">
+              <i class="fas fa-sun"></i>
+            </span>
+
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="darkModeSwitch"
+                name="darkModeSwitch"
+                role="switch"
+              />
+              <label for="darkModeSwitch"></label>
+            </div>
+
+            <span class="fs-5 text-dark ms-2">
+              <i class="fas fa-moon"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section
+      id="hero-principal"
+      class="text-center text-white"
+      style="padding-top: 120px; background-color: #8b4513"
+    >
+      <div class="container py-5">
+        <h1 class="display-4 mb-4">El Dulce Viaje del Cacao 🍫</h1>
+        <h2 class="lead mb-5">
+          Descubre el fascinante mundo del chocolate, desde su origen hasta tu
+          paladar.
+        </h2>
+
+        <div class="mb-5">
+          <a class="btn btn-primary btn-lg rounded-pill" href="#tipos">
+            <span class="me-2"><i class="fas fa-arrow-down"></i></span>
+            <span>Explorar Sabores</span>
+          </a>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-9">
+            <p class="fs-5">
+              El chocolate, ese manjar de dioses, ha cautivado a la humanidad
+              durante siglos. Originario de las selvas tropicales de América, el
+              grano de cacao es el corazón de una historia de sabor, cultura y
+              placer. Desde el amargo y puro cacao ceremonial hasta las suaves y
+              cremosas barras que conocemos hoy, cada bocado es una experiencia
+              única.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tipos" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="h2 text-center text-dark mb-2">
+          Nuestros Tipos de Cacao ✨
+        </h2>
+        <p class="fs-5 text-center text-secondary mb-5">
+          Explora la pureza e intensidad de nuestra selección "Bean to Bar".
+        </p>
+
+        <div class="row g-4 justify-content-center mt-3">
+          <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-sm d-flex flex-column">
+              <div class="card-img-wrapper">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxvaCC4YVhFCoTHzZBUm3xoK3qC3s54W6W0g&s"
+                  class="card-img-top img-fluid"
+                  alt="Chocolate Oscuro"
+                />
+              </div>
+
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-center text-dark">
+                  Negro 75% Cacao
+                </h5>
+                <div class="text-center mb-3">
+                  <span class="badge bg-dark rounded-pill fs-6">Intenso</span>
+                </div>
+                <p class="card-text text-justify mb-4 card-description">
+                  El sabor puro y robusto, ideal para los amantes del amargo.
+                  Elaborado con granos Trinitario, sin lácteos.
+                </p>
+                <a
+                  href="https://es.wikipedia.org/wiki/Chocolate_amargo"
+                  class="mt-auto text-primary fw-bold text-center border-top pt-2"
+                  >Ver Origen</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-sm d-flex flex-column">
+              <div class="card-img-wrapper">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmZUAQmngJn2UP4XFbgkbQpEbVBUaL2-rIAw&s"
+                  class="card-img-top img-fluid"
+                  alt="Chocolate con Leche"
+                />
+              </div>
+
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-center text-dark">
+                  Con Leche Cremoso
+                </h5>
+                <div class="text-center mb-3">
+                  <span class="badge bg-info rounded-pill fs-6">Suave</span>
+                </div>
+                <p class="card-text text-justify mb-4 card-description">
+                  Un clásico reconfortante. Balance perfecto entre cacao
+                  Forastero y la dulzura de la leche.
+                </p>
+                <a
+                  href="https://es.wikipedia.org/wiki/Chocolate_con_leche"
+                  class="mt-auto text-primary fw-bold text-center border-top pt-2"
+                  >Ver Ingredientes</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-sm d-flex flex-column">
+              <div class="card-img-wrapper">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtA8z6WpgX-ZwozBVFNlU3CyOKKqgA83X8Tg&s"
+                  class="card-img-top img-fluid"
+                  alt="Chocolate Blanco"
+                />
+              </div>
+
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-center text-dark">
+                  Blanco con Vainilla
+                </h5>
+                <div class="text-center mb-3">
+                  <span class="badge bg-warning text-dark rounded-pill fs-6"
+                    >Delicado</span
+                  >
+                </div>
+                <p class="card-text text-justify mb-4 card-description">
+                  Elaborado con manteca de cacao pura y vainilla de Madagascar.
+                  Sin sólidos de cacao.
+                </p>
+                <a
+                  href="https://es.wikipedia.org/wiki/Chocolate_blanco"
+                  class="mt-auto text-primary fw-bold text-center border-top pt-2"
+                  >Ver Detalles</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 bg-light" id="faq">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="h3 text-center text-dark mb-2">
+              Preguntas Frecuentes 🧐
+            </h2>
+            <p class="fs-6 text-center mb-5 text-secondary">
+              Todo lo que querías saber sobre el cacao 🍫
+            </p>
+
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item shadow-sm mb-3">
+                <h2 class="accordion-header" id="headingOne">
+                  <button
+                    class="accordion-button fw-bold p-3"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    ¿Qué significa el término "Bean to Bar"?
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse show"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body p-3">
+                    Significa “Del Grano a la Barra”. Describe a los fabricantes
+                    que controlan todo el proceso de producción: desde la
+                    selección y tostado de los granos de cacao hasta la
+                    fabricación de la barra final. Es sinónimo de
+                    <strong>calidad artesanal</strong>.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item shadow-sm mb-3">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button
+                    class="accordion-button collapsed fw-bold p-3"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    ¿Es el chocolate oscuro siempre más saludable?
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingTwo"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body p-3">
+                    Generalmente sí, siempre y cuando tenga un alto contenido de
+                    cacao (70% o más) y bajo contenido de azúcar y lácteos. El
+                    cacao puro es rico en antioxidantes y magnesio, pero los
+                    beneficios disminuyen con el procesamiento y la adición de
+                    azúcares.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item shadow-sm mb-3">
+                <h2 class="accordion-header" id="headingThree">
+                  <button
+                    class="accordion-button collapsed fw-bold p-3"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    ¿Cuál es la diferencia entre cacao y cocoa?
+                  </button>
+                </h2>
+                <div
+                  id="collapseThree"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingThree"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body p-3">
+                    Cacao se refiere al grano y a los productos que no han sido
+                    calentados a altas temperaturas (crudos). Cocoa se refiere
+                    al polvo o productos derivados del cacao que han sido
+                    tostados o procesados con calor.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="py-5 bg-light">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="h2 text-center text-dark mb-2">Contáctanos 📧</h2>
+            <p class="fs-5 text-center text-secondary mb-4">
+              ¿Tienes alguna pregunta, sugerencia o pedido especial? Escríbenos.
+            </p>
+
+            <div class="card p-4 shadow mt-4">
+              <form>
+                <div class="mb-3">
+                  <label class="form-label text-dark" for="nombre"
+                    >Nombre</label
+                  >
+                  <div class="input-group">
+                    <span class="input-group-text"
+                      ><i class="fas fa-user"></i
+                    ></span>
+                    <input
+                      id="nombre"
+                      class="form-control"
+                      type="text"
+                      placeholder="Tu nombre completo"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label text-dark" for="email">Email</label>
+                  <div class="input-group">
+                    <span class="input-group-text"
+                      ><i class="fas fa-envelope"></i
+                    ></span>
+                    <input
+                      id="email"
+                      class="form-control"
+                      type="email"
+                      placeholder="ejemplo@correo.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label text-dark" for="asunto"
+                    >Asunto</label
+                  >
+                  <div class="input-group">
+                    <select id="asunto" class="form-select" required>
+                      <option value="" disabled selected>
+                        Selecciona un motivo
+                      </option>
+                      <option value="pedido">Pedido y Disponibilidad</option>
+                      <option value="sugerencia">
+                        Sugerencia o Colaboración
+                      </option>
+                      <option value="general">Consulta General</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label text-dark" for="mensaje"
+                    >Mensaje</label
+                  >
+                  <textarea
+                    id="mensaje"
+                    class="form-control"
+                    placeholder="Escribe tu mensaje aquí..."
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="text-center pt-3">
+                  <button class="btn btn-primary btn-lg" type="submit">
+                    <span class="me-2"><i class="fas fa-paper-plane"></i></span>
+                    <span>Enviar Mensaje</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-light pt-5 pb-3">
+      <div class="container">
+        <div class="text-center">
+          <div class="row d-none d-lg-flex">
+            <div class="col-4">
+              <p class="h6 fw-bold text-primary mb-3">Explorar</p>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#tipos" class="text-secondary text-decoration-none"
+                    >Tipos de Cacao</a
+                  >
+                </li>
+                <li>
+                  <a href="#recetas" class="text-secondary text-decoration-none"
+                    >Recetas</a
+                  >
+                </li>
+                <li>
+                  <a href="#faq" class="text-secondary text-decoration-none"
+                    >FAQ</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-4">
+              <p class="h6 fw-bold text-primary mb-3">Compañía</p>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-secondary text-decoration-none"
+                    >Nuestra Historia</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-secondary text-decoration-none"
+                    >Proceso Bean to Bar</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#contacto"
+                    class="text-secondary text-decoration-none"
+                    >Contacto</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-4">
+              <p class="h6 fw-bold text-primary mb-3">Legal</p>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-secondary text-decoration-none"
+                    >Términos y Condiciones</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-secondary text-decoration-none"
+                    >Política de Privacidad</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-secondary text-decoration-none"
+                    >Política de Cookies</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <hr class="border-secondary my-4" />
+
+          <p class="mb-3">
+            <a href="#" class="text-primary fs-3 mx-2">
+              <i class="fab fa-facebook-square"></i>
+            </a>
+            <a href="#" class="text-primary fs-3 mx-2">
+              <i class="fab fa-instagram-square"></i>
+            </a>
+            <a href="#" class="text-primary fs-3 mx-2">
+              <i class="fab fa-twitter-square"></i>
+            </a>
+          </p>
+
+          <p class="small text-secondary">
+            &copy; 2025 El Dulce Viaje del Cacao. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>

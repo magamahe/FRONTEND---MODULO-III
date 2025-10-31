@@ -1,0 +1,116 @@
+/* -------------------------------------- */
+/* 1. MODO OSCURO: ESTILOS ESENCIALES */
+/* -------------------------------------- */
+
+/* Transición suave para el cambio de tema */
+body {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Selector principal para el modo oscuro */
+html[data-theme="dark"] {
+    background-color: #121212 !important; 
+    color: #EBEBEB !important; 
+}
+
+/* Forzar color de texto fuerte y títulos */
+html[data-theme="dark"] .h1,
+html[data-theme="dark"] .h2,
+html[data-theme="dark"] .h3,
+html[data-theme="dark"] .h4,
+html[data-theme="dark"] .h5,
+html[data-theme="dark"] .h6,
+html[data-theme="dark"] .display-4,
+html[data-theme="dark"] strong,
+html[data-theme="dark"] .text-dark,
+html[data-theme="dark"] .form-label {
+    color: #FFF !important;
+}
+
+/* Navbar: Color de fondo, texto y enlaces */
+html[data-theme="dark"] .navbar {
+    background-color: #1A1A1A !important;
+    border-bottom: 1px solid #333 !important;
+}
+html[data-theme="dark"] .navbar .nav-link,
+html[data-theme="dark"] .navbar .navbar-brand {
+    color: #FFF !important;
+}
+html[data-theme="dark"] .navbar .nav-link:hover {
+    color: #CCC !important;
+}
+
+/* Tarjetas, Secciones, Formularios (sobreescribe bg-light, form-control, etc.) */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .shadow,
+html[data-theme="dark"] .bg-light { 
+    background-color: #202020 !important;
+    border-color: #333 !important;
+    box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.05) !important;
+}
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .form-select,
+html[data-theme="dark"] .input-group-text,
+html[data-theme="dark"] .textarea,
+html[data-theme="dark"] .accordion-button {
+    background-color: #333 !important;
+    border-color: #444 !important;
+    color: #EBEBEB !important;
+}
+html[data-theme="dark"] .accordion-button:not(.collapsed) {
+    color: #FFF;
+    background-color: #333;
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+html[data-theme="dark"] .accordion-button::after {
+    filter: brightness(0) invert(1);
+}
+html[data-theme="dark"] .card-title,
+html[data-theme="dark"] .card-text,
+html[data-theme="dark"] .list-unstyled a,
+html[data-theme="dark"] .input-group-text i {
+    color: #EBEBEB !important;
+}
+
+
+/* -------------------------------------- */
+/* 2. DISEÑO: AJUSTES DE TARJETAS Y HERO */
+/* -------------------------------------- */
+
+/* Alineación de Tarjetas (Requiere CSS para Object-Fit y Altura del Texto) */
+#tipos .card-img-wrapper {
+    height: 200px; /* Altura fija del contenedor */
+    overflow: hidden;
+}
+#tipos .card-img-wrapper img {
+    height: 100%; /* La imagen ocupa toda la altura del wrapper */
+    width: 100%;
+    object-fit: cover; /* CLAVE: Recorta la imagen sin distorsionarla */
+}
+#tipos .card-description {
+    min-height: 80px; /* CLAVE: Asegura que el texto tenga una altura mínima para alinear el botón mt-auto */
+    /* Usamos la clase .card-description añadida en el HTML */
+}
+
+
+/* HERO */
+#hero-principal {
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAGkObXdr_tmolcsLdRY7TEB-T3rOYfGpk1A&s') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    min-height: 400px;
+}
+#hero-principal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Capa oscura (overlay) */
+    z-index: 1; 
+}
+#hero-principal .container { 
+    position: relative;
+    z-index: 2;
+}
