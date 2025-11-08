@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Registro</title>
+  <!-- Importamos Bulma para usar sus clases de estilo -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+</head>
+<body class="has-background-light">
+
+  <section class="section">
+    <div class="container">
+
+      <!-- Título centrado -->
+      <h1 class="title has-text-centered has-text-primary">Registro de Usuario</h1>
+
+      <!-- Formulario con envío mediante POST -->
+      <form id="formRegistro" method="POST" class="box">
+
+        <!-- Campo: Nombre completo -->
+        <!-- Usamos label asociado al input mediante el atributo "for" -->
+        <div class="field">
+          <label class="label" for="nombre">Nombre completo</label>
+          <div class="control">
+            <!-- Input con clase de Bulma para estilo -->
+            <input id="nombre" class="input" type="text" placeholder="Ej: Sofía Rodríguez" required>
+          </div>
+        </div>
+
+        <!-- Campo: Correo electrónico -->
+        <div class="field">
+          <label class="label" for="email">Correo electrónico</label>
+          <div class="control">
+            <input id="email" class="input" type="email" placeholder="ejemplo@correo.com" required>
+          </div>
+        </div>
+
+        <!-- Campo: Contraseña -->
+        <div class="field">
+          <label class="label" for="password">Contraseña</label>
+          <div class="control">
+            <input id="password" class="input" type="password" required>
+          </div>
+        </div>
+
+        <!-- Campo: Confirmar contraseña -->
+        <div class="field">
+          <label class="label" for="password2">Confirmar contraseña</label>
+          <div class="control">
+            <input id="password2" class="input" type="password" required>
+          </div>
+        </div>
+
+        <!-- EXTRA: Descripción personal -->
+        <!-- Se pidió agregar textarea -->
+        <div class="field">
+          <label class="label" for="descripcion">Sobre vos 💬</label>
+          <div class="control">
+            <textarea id="descripcion" class="textarea" placeholder="Contame algo de vos..."></textarea>
+          </div>
+        </div>
+
+        <!-- Botón de envío del formulario -->
+        <div class="field has-text-centered">
+          <button class="button is-primary">Registrarme</button>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+</body>
+</html>

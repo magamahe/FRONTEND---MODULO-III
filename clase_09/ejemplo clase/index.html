@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Profesional</title>
+
+  <!-- Bulma -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+</head>
+
+<body class="has-background-light">
+
+   <!-- ✅ 1) COMPLETAR EL NAVBAR -->
+  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <!-- Cambiar este texto -->
+      <a class="navbar-item" href="#">Mi Sitio</a>
+
+      <!-- ESTE BOTÓN DEBE ACTIVAR EL MENÚ EN MÓVIL -->
+      <!-- Le agregué id="navbarBurger" y atributos aria para accesibilidad -->
+      <a role="button" class="navbar-burger" id="navbarBurger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+        <span></span><span></span><span></span>
+      </a>
+    </div>
+
+    <!-- AGREGAR ENLACES DENTRO DE NAVBAR-START -->
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <!-- Ej: Inicio, Contacto -->
+        <a class="navbar-item" href="#">Inicio</a>
+        <a class="navbar-item" href="#">Equipo</a>
+        <a class="navbar-item" href="#contact">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- HEADER -->
+  <section class="hero is-light">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Equipo Creativo</h1>
+        <h2 class="subtitle">Personas que hacen que las ideas cobren vida</h2>
+      </div>
+    </div>
+  </section>
+
+<section class="section">
+  <div class="container">
+
+    <h1 class="title has-text-centered">Formulario de Contacto</h1>
+
+    <div class="box">
+
+      <!-- NOMBRE -->
+      <div class="field">
+        <label class="label" for="nombre">Nombre</label>
+        <input class="input" id="nombre" type="text" placeholder="Ej: Ana Pérez">
+        <p id="nombreError" class="help is-danger is-hidden">Debe contener al menos 3 letras.</p>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="field">
+        <label class="label" for="email">Email</label>
+        <input class="input" id="email" type="email" placeholder="ejemplo@mail.com">
+        <p id="emailError" class="help is-danger is-hidden">Ingresá un email válido.</p>
+      </div>
+
+      <!-- MENSAJE -->
+      <div class="field">
+        <label class="label" for="mensaje">Mensaje</label>
+        <textarea class="textarea" id="mensaje" placeholder="Tu mensaje..."></textarea>
+        <p id="mensajeError" class="help is-danger is-hidden">Debe tener mínimo 6 caracteres.</p>
+      </div>
+
+      <!-- BOTÓN -->
+      <button class="button is-fullwidth is-light" id="btnEnviar" disabled>
+        Completar todos los campos
+      </button>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ✅ MODAL -->
+<div class="modal" id="modalExito">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">✅ Enviado con éxito</p>
+      <button class="delete" id="cerrarModal"></button>
+    </header>
+    <section class="modal-card-body">
+      Gracias por enviar el formulario. Nos pondremos en contacto pronto.
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-primary" id="cerrarModalFooter">Cerrar</button>
+    </footer>
+  </div>
+</div>
+
+
+<script>
+  // Capturamos elementos
+  const nombre = document.getElementById("nombre");
+  const email = document.getElementById("email");
+  const mensaje = document.getElementById("mensaje");
+  const btnEnviar = document.getElementById("btnEnviar");
+
+  const nombreError = document.getElementById("nombreError");
+  const emailError = document.getElementById("emailError");
+  const mensajeError = document.getElementById("mensajeError");
+
+  const modal = document.getElementById("modalExito");
+  const cerrarModal = document.getElementById("cerrarModal");
+  const cerrarModalFooter = document.getElementById("cerrarModalFooter");
+
+  // Función que habilita o deshabilita el botón según los errores
+  function actualizarBoton() {
+    if (
+      nombreError.classList.contains("is-hidden") &&
+      emailError.classList.contains("is-hidden") &&
+      mensajeError.classList.contains("is-hidden")
+    ) {
+      btnEnviar.disabled = false;
+      btnEnviar.classList.remove("is-light");
+      btnEnviar.classList.add("is-primary");
+      btnEnviar.textContent = "Enviar";
+    } else {
+      btnEnviar.disabled = true;
+      btnEnviar.classList.add("is-light");
+      btnEnviar.classList.remove("is-primary");
+      btnEnviar.textContent = "Completar todos los campos";
+    }
+  }
+
+  // Validación campo por campo (solo cuando salís del campo)
+  nombre.addEventListener("blur", () => {
+    /^[a-zA-ZÀ-ÿ\s]{3,}$/.test(nombre.value.trim())
+      ? nombreError.classList.add("is-hidden")
+      : nombreError.classList.remove("is-hidden");
+    actualizarBoton();
+  });
+
+  email.addEventListener("blur", () => {
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())
+      ? emailError.classList.add("is-hidden")
+      : emailError.classList.remove("is-hidden");
+    actualizarBoton();
+  });
+
+  mensaje.addEventListener("blur", () => {
+    mensaje.value.trim().length >= 6
+      ? mensajeError.classList.add("is-hidden")
+      : mensajeError.classList.remove("is-hidden");
+    actualizarBoton();
+  });
+
+  // ✅ Al enviar: mostrar loading → luego modal
+  btnEnviar.addEventListener("click", () => {
+
+    btnEnviar.classList.add("is-loading"); // Ruedita
+
+    setTimeout(() => {
+      btnEnviar.classList.remove("is-loading"); // Dejar de cargar
+      modal.classList.add("is-active"); // Mostrar modal
+    }, 1200);
+
+  });
+
+  cerrarModal.addEventListener("click", () => modal.classList.remove("is-active"));
+  cerrarModalFooter.addEventListener("click", () => modal.classList.remove("is-active"));
+</script>
+
+</body>
+</html>

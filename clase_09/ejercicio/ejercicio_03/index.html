@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Navbar</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+
+  <!-- Íconos (opcional para el botón de login) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <!-- Logo -->
+      <a class="navbar-item" href="#">
+        <strong>MiLogo</strong>
+      </a>
+
+      <!-- Burger para móviles -->
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="menuNav">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <!-- Menú principal -->
+    <div id="menuNav" class="navbar-menu">
+
+      <!-- Enlaces de la izquierda -->
+      <div class="navbar-start">
+        <a class="navbar-item" href="#">Inicio</a>
+        <a class="navbar-item" href="#">Acerca de</a>
+        <a class="navbar-item" href="#">Contacto</a>
+      </div>
+
+      <!-- Botón de la derecha -->
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <a class="button is-primary">
+            <span class="icon is-small"><i class="fas fa-user"></i></span>
+            <span>Iniciar Sesión</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Script para activar burger -->
+  <script>
+    // Seleccionamos burger y menú
+    const burger = document.querySelector('.navbar-burger');
+    const menu = document.querySelector('#menuNav');
+
+    // Click -> alterna la visibilidad
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('is-active');
+      menu.classList.toggle('is-active');
+    });
+  </script>
+
+</body>
+</html>

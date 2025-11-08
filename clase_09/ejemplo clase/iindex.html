@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Equipo Creativo — Contacto</title>
+
+  <!-- Bulma -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+</head>
+
+<body>
+
+  <!-- ✅ 1) COMPLETAR EL NAVBAR -->
+  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <!-- Cambiar este texto -->
+      <a class="navbar-item" href="#">Mi Sitio</a>
+
+      <!-- ESTE BOTÓN DEBE ACTIVAR EL MENÚ EN MÓVIL -->
+      <!-- Le agregué id="navbarBurger" y atributos aria para accesibilidad -->
+      <a role="button" class="navbar-burger" id="navbarBurger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+        <span></span><span></span><span></span>
+      </a>
+    </div>
+
+    <!-- AGREGAR ENLACES DENTRO DE NAVBAR-START -->
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-start is-flex is-justify-content-center is-align-items-center" style="flex: 1;">
+">
+        <!-- Ej: Inicio, Contacto -->
+        <a class="navbar-item" href="#">Inicio</a>
+        <a class="navbar-item" href="#">Equipo</a>
+        <a class="navbar-item" href="#contact">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- HEADER -->
+  <section class="hero is-light">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Equipo Creativo</h1>
+        <h2 class="subtitle">Personas que hacen que las ideas cobren vida</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO (id para anclar y JS) -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="title has-text-centered">Formulario de Registro</h2>
+
+      <div class="box">
+
+        <!-- Usamos form para poder hacer submit y reset -->
+        <form id="formRegistro" novalidate>
+          <!-- NOMBRE -->
+          <div class="field">
+            <label class="label" for="nombre">Nombre</label>
+            <input class="input" id="nombre" type="text" placeholder="Ej: Ana María López">
+            <p id="nombreError" class="help is-danger is-hidden">El nombre debe tener al menos 3 letras y solo contener letras.</p>
+          </div>
+
+          <!-- EMAIL -->
+          <div class="field">
+            <label class="label" for="email">Correo electrónico</label>
+            <input class="input" id="email" type="email" placeholder="usuario@mail.com">
+            <p id="emailError" class="help is-danger is-hidden">Ingresá un email válido.</p>
+          </div>
+
+          <!-- MENSAJE -->
+          <div class="field">
+            <label class="label" for="mensaje">Mensaje</label>
+            <textarea class="textarea" id="mensaje" placeholder="Escribí tu mensaje..."></textarea>
+            <p id="mensajeError" class="help is-danger is-hidden">El mensaje debe tener al menos 6 caracteres.</p>
+          </div>
+
+          <!-- BOTÓN: inicia deshabilitado y con estilo "light" -->
+          <button id="btnEnviar" class="button is-fullwidth is-light" type="submit" disabled>
+            Completar todos los campos
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div class="modal" id="modalExito">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">¡Enviado con éxito!</p>
+        <button class="delete" id="cerrarModal" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        Gracias por contactarte. Te responderemos pronto.
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-primary" id="cerrarModalFooter">Cerrar</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: comentarios en las líneas nuevas/clave -->
+  <script>
+    /* === NAVBAR BURGER (líneas añadidas para que el navbar funcione en móvil) === */
+    const navbarBurger = document.getElementById("navbarBurger"); // <-- id agregado en el HTML
+    const navMenu = document.getElementById("navMenu");           // <-- referencia al menú desplegable
+
+    // Al click togglamos la clase is-active tanto en el icono como en el menú
+    navbarBurger.addEventListener("click", () => {
+      navbarBurger.classList.toggle("is-active"); // anima la hamburguesa
+      navMenu.classList.toggle("is-active");     // muestra/oculta el menú
+    });
+
+    /* === FORM: variables principales === */
+    const formRegistro = document.getElementById("formRegistro"); // <-- usamos este form para submit/reset
+    const nombre = document.getElementById("nombre");
+    const email = document.getElementById("email");
+    const mensaje = document.getElementById("mensaje");
+    const btnEnviar = document.getElementById("btnEnviar");
+
+    const nombreError = document.getElementById("nombreError");
+    const emailError = document.getElementById("emailError");
+    const mensajeError = document.getElementById("mensajeError");
+
+    const modal = document.getElementById("modalExito");
+    const cerrarModal = document.getElementById("cerrarModal");
+    const cerrarModalFooter = document.getElementById("cerrarModalFooter");
+
+    /* === FLAGS para saber si el usuario tocó cada campo (evita mostrar errores antes de tocar) === */
+    let touchedNombre = false;
+    let touchedEmail = false;
+    let touchedMensaje = false;
+
+    /* === VALIDADORES (solo retornan true/false; no muestran errores) === */
+    function esNombreValido() {
+      return /^[a-zA-ZÀ-ÿ\s]{3,}$/.test(nombre.value.trim());
+    }
+
+    function esEmailValido() {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    }
+
+    function esMensajeValido() {
+      return mensaje.value.trim().length >= 6;
+    }
+
+    /* === Mostrar errores UNICAMENTE si el campo fue tocado === */
+    function mostrarErroresSegunTouched() {
+      if (touchedNombre) {
+        nombreError.classList.toggle("is-hidden", esNombreValido());
+      }
+      if (touchedEmail) {
+        emailError.classList.toggle("is-hidden", esEmailValido());
+      }
+      if (touchedMensaje) {
+        mensajeError.classList.toggle("is-hidden", esMensajeValido());
+      }
+    }
+
+    /* === Actualizar estado del botón y su texto (Completar... / Enviar) === */
+    function actualizarBoton() {
+      if (esNombreValido() && esEmailValido() && esMensajeValido()) {
+        btnEnviar.disabled = false;
+        btnEnviar.classList.remove("is-light");
+        btnEnviar.classList.add("is-primary");
+        btnEnviar.textContent = "Enviar";
+      } else {
+        btnEnviar.disabled = true;
+        btnEnviar.classList.remove("is-primary");
+        btnEnviar.classList.add("is-light");
+        btnEnviar.textContent = "Completar todos los campos";
+      }
+    }
+
+    /* === Eventos: validación SOLO al salir del campo (blur) === */
+    nombre.addEventListener("blur", () => {
+      touchedNombre = true;              // marcar que el usuario "tocó" el campo
+      mostrarErroresSegunTouched();      // mostrar/ocultar mensaje si corresponde
+      actualizarBoton();                 // actualizar botón según validez actual
+    });
+
+    email.addEventListener("blur", () => {
+      touchedEmail = true;
+      mostrarErroresSegunTouched();
+      actualizarBoton();
+    });
+
+    mensaje.addEventListener("blur", () => {
+      touchedMensaje = true;
+      mostrarErroresSegunTouched();
+      actualizarBoton();
+    });
+
+    /* === Opcional: también podemos permitir que al presionar Enter dentro del campo se valide sin hacer blur ===
+       (si no querés, podés quitar estos "input" listeners)
+    */
+    nombre.addEventListener("input", () => { if (touchedNombre) { mostrarErroresSegunTouched(); actualizarBoton(); } });
+    email.addEventListener("input", () => { if (touchedEmail) { mostrarErroresSegunTouched(); actualizarBoton(); } });
+    mensaje.addEventListener("input", () => { if (touchedMensaje) { mostrarErroresSegunTouched(); actualizarBoton(); } });
+
+    /* === ENVÍO: preventDefault, loader (ruedita), mostrar modal y limpiar === */
+    formRegistro.addEventListener("submit", (e) => {
+      e.preventDefault(); // evitar recarga
+
+      // Si todo es válido (por seguridad comprobamos otra vez)
+      if (esNombreValido() && esEmailValido() && esMensajeValido()) {
+
+        // Mostrar la ruedita de Bulma en el botón
+        btnEnviar.classList.add("is-loading");
+
+        // Simulamos envío (replace con fetch/XHR real si corresponde)
+        setTimeout(() => {
+          btnEnviar.classList.remove("is-loading");
+
+          // Abrir modal de éxito
+          modal.classList.add("is-active");
+
+          // Limpiar form y estados
+          formRegistro.reset();
+          touchedNombre = touchedEmail = touchedMensaje = false;
+          nombreError.classList.add("is-hidden");
+          emailError.classList.add("is-hidden");
+          mensajeError.classList.add("is-hidden");
+
+          // Dejar el botón en estado inicial
+          btnEnviar.disabled = true;
+          btnEnviar.classList.remove("is-primary");
+          btnEnviar.classList.add("is-light");
+          btnEnviar.textContent = "Completar todos los campos";
+        }, 1200);
+      } else {
+        // Si no es válido, marcamos touched para que se muestren errores al presionar enviar
+        touchedNombre = touchedNombre || true;
+        touchedEmail = touchedEmail || true;
+        touchedMensaje = touchedMensaje || true;
+        mostrarErroresSegunTouched();
+        actualizarBoton();
+      }
+    });
+
+    /* === Cerrar modal (varias formas) === */
+    cerrarModal.addEventListener("click", () => modal.classList.remove("is-active"));
+    cerrarModalFooter.addEventListener("click", () => modal.classList.remove("is-active"));
+    modal.querySelector(".modal-background").addEventListener("click", () => modal.classList.remove("is-active"));
+
+    /* === FIN === */
+  </script>
+</body>
+</html>

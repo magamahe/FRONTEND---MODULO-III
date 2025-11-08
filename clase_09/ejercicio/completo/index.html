@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Validado</title>
+
+  <!-- BULMA -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+
+  <!-- ICONOS QUE FUNCIONAN ✅ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* TOAST */
+    #toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: #ff3860;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .5s;
+      z-index: 2000;
+    }
+    #toast.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+
+<body class="has-background-light">
+
+  <!-- NAVBAR -->
+  <nav class="navbar is-info" role="navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#"><strong>Mi Sitio</strong></a>
+
+      <a class="navbar-burger" id="navbar-burger">
+        <span></span><span></span><span></span>
+      </a>
+    </div>
+
+    <div class="navbar-menu" id="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="#">Inicio</a>
+        <a class="navbar-item" href="#">Acerca</a>
+        <a class="navbar-item" href="#">Contacto</a>
+      </div>
+      <div class="navbar-end">
+        <a class="navbar-item button is-primary is-light">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PÁGINA -->
+  <section class="section">
+    <div class="container">
+      <h1 class="title has-text-centered">Formulario Validado</h1>
+
+      <div class="columns is-centered">
+        <div class="column is-6-tablet is-5-desktop is-4-widescreen">
+
+          <div class="box">
+            <form id="form">
+
+              <!-- Nombre -->
+              <div class="field">
+                <label class="label">Nombre Completo</label>
+                <div class="control has-icons-left">
+                  <input id="nombre" type="text" class="input" placeholder="Ej: Ana Pérez">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </div>
+                <p class="help is-danger" id="errorNombre" style="display:none;">El nombre debe tener al menos 3 letras.</p>
+              </div>
+
+              <!-- Correo -->
+              <div class="field">
+                <label class="label">Correo</label>
+                <div class="control has-icons-left">
+                  <input id="correo" type="email" class="input" placeholder="ejemplo@mail.com">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                </div>
+                <p class="help is-danger" id="errorCorreo" style="display:none;">Correo inválido.</p>
+              </div>
+
+              <!-- Contraseña -->
+              <div class="field">
+                <label class="label">Contraseña</label>
+                <div class="control has-icons-left">
+                  <input id="pass1" type="password" class="input">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Confirmar Contraseña -->
+              <div class="field">
+                <label class="label">Confirmar Contraseña</label>
+                <div class="control has-icons-left">
+                  <input id="pass2" type="password" class="input">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </div>
+                <p class="help is-danger" id="errorPass" style="display:none;">Las contraseñas no coinciden.</p>
+              </div>
+
+              <!-- Descripción -->
+              <div class="field">
+                <label class="label">Descripción</label>
+                <textarea id="descripcion" class="textarea" placeholder="Contame algo de vos..."></textarea>
+                <p class="help is-danger" id="errorDesc" style="display:none;">La descripción debe tener más de 5 caracteres.</p>
+              </div>
+
+              <!-- Botones -->
+              <div class="field is-grouped is-justify-content-space-between">
+                <button id="btnEnviar" class="button is-primary" disabled>Enviar</button>
+                <button type="button" id="btnEliminar" class="button is-danger is-outlined">
+                  <span class="icon"><i class="fas fa-trash"></i></span>
+                  <span>Eliminar</span>
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content has-background-white has-text-centered p-5">
+      <h2 class="title is-4">Formulario enviado con éxito 🎉</h2>
+      <p>¡Gracias por completar la información!</p>
+      <br>
+      <button class="button is-success" id="cerrarModal">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast">Formulario eliminado ❌</div>
+
+<script>
+  // Navbar responsive
+  document.getElementById("navbar-burger").onclick = () =>
+    document.getElementById("navbar-menu").classList.toggle("is-active");
+
+  const nombre = document.getElementById("nombre");
+  const correo = document.getElementById("correo");
+  const pass1 = document.getElementById("pass1");
+  const pass2 = document.getElementById("pass2");
+  const descripcion = document.getElementById("descripcion");
+  const btnEnviar = document.getElementById("btnEnviar");
+  const btnEliminar = document.getElementById("btnEliminar");
+  const form = document.getElementById("form");
+
+  const errorNombre = document.getElementById("errorNombre");
+  const errorCorreo = document.getElementById("errorCorreo");
+  const errorPass = document.getElementById("errorPass");
+  const errorDesc = document.getElementById("errorDesc");
+
+  function validarFormulario() {
+    const nombreOk = nombre.value.trim().length >= 3;
+    const correoOk = correo.value.includes("@") && correo.value.includes(".");
+    const passOk = pass1.value === pass2.value && pass1.value.trim() !== "";
+    const descOk = descripcion.value.trim().length > 5;
+
+    btnEnviar.disabled = !(nombreOk && correoOk && passOk && descOk);
+  }
+
+  nombre.addEventListener("blur", () =>
+    errorNombre.style.display = nombre.value.trim().length < 3 ? "block" : "none");
+
+  correo.addEventListener("blur", () =>
+    errorCorreo.style.display = (!correo.value.includes("@") || !correo.value.includes(".")) ? "block" : "none");
+
+  pass2.addEventListener("blur", () =>
+    errorPass.style.display = pass1.value !== pass2.value ? "block" : "none");
+
+  descripcion.addEventListener("blur", () =>
+    errorDesc.style.display = descripcion.value.trim().length <= 5 ? "block" : "none");
+
+  form.addEventListener("input", validarFormulario);
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    document.getElementById("modal").classList.add("is-active");
+  });
+
+ document.getElementById("cerrarModal").onclick = () => {
+  document.getElementById("modal").classList.remove("is-active");
+  form.reset();      // <--- Limpia el formulario
+  validarFormulario(); // <--- Desactiva el botón Enviar nuevamente
+};
+
+
+  btnEliminar.onclick = () => {
+    form.reset();
+    validarFormulario();
+    const toast = document.getElementById("toast");
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2000);
+  };
+</script>
+
+</body>
+</html>

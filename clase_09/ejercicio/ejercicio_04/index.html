@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Página con Formulario y Navbar</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="has-background-light">
+
+  <!-- NAVBAR -->
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#"><strong>MiLogo</strong></a>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="menuPrincipal">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="menuPrincipal" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="#">Inicio</a>
+        <a class="navbar-item" href="#">Servicios</a>
+        <a class="navbar-item" href="#">Contacto</a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <a class="button is-primary">
+            <span class="icon"><i class="fas fa-user"></i></span>
+            <span>Login</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SECCIÓN DEL FORMULARIO -->
+  <section class="section">
+    <div class="container">
+
+      <h1 class="title has-text-centered has-text-primary">Formulario de Contacto</h1>
+
+      <!-- Centrado con columns -->
+      <div class="columns is-centered">
+        <div class="column is-half">
+
+          <form method="POST" class="box">
+
+            <!-- Nombre -->
+            <div class="field">
+              <label class="label" for="nombre">Nombre</label>
+              <div class="control has-icons-left">
+                <input id="nombre" class="input" type="text" placeholder="Tu nombre" required>
+                <span class="icon is-left"><i class="fas fa-user"></i></span>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="field">
+              <label class="label" for="email">Correo electrónico</label>
+              <div class="control has-icons-left">
+                <input id="email" class="input" type="email" placeholder="tuemail@ejemplo.com" required>
+                <span class="icon is-left"><i class="fas fa-envelope"></i></span>
+              </div>
+            </div>
+
+            <!-- Mensaje -->
+            <div class="field">
+              <label class="label" for="mensaje">Mensaje</label>
+              <div class="control">
+                <textarea id="mensaje" class="textarea" placeholder="Escribí tu mensaje..." required></textarea>
+              </div>
+            </div>
+
+            <!-- Botón de enviar -->
+            <div class="field has-text-centered">
+              <button class="button is-success">Enviar</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Script para el menú burger -->
+  <script>
+    const burger = document.querySelector('.navbar-burger');
+    const menu = document.querySelector('#menuPrincipal');
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('is-active');
+      menu.classList.toggle('is-active');
+    });
+  </script>
+
+</body>
+</html>

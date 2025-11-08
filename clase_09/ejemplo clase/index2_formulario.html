@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Equipo Creativo</title>
+
+  <!-- Bulma -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+
+  <style>
+    /* Efecto suave al pasar el mouse por las cards */
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: .3s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <h1 class="title has-text-centered">Equipo Creativo</h1>
+      <h2 class="subtitle has-text-centered">Personas que hacen que las ideas cobren vida ✨</h2>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="section">
+    <h2 class="title has-text-centered is-3">Nuestro Equipo</h2>
+
+    <div class="columns is-multiline">
+
+      <div class="column is-4">
+        <div class="card team-card">
+          <div class="card-content">
+            <p class="title is-5">María Gómez</p>
+            <p class="subtitle is-6">Diseñadora UX/UI</p>
+            <p>Crea experiencias visuales hermosas y fáciles de usar.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="card team-card">
+          <div class="card-content">
+            <p class="title is-5">Juan Pérez</p>
+            <p class="subtitle is-6">Desarrollador Front-End</p>
+            <p>Convierte las ideas en interfaces interactivas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="card team-card">
+          <div class="card-content">
+            <p class="title is-5">Carla Rodríguez</p>
+            <p class="subtitle is-6">Gestora de Proyectos</p>
+            <p>Organiza, coordina y hace que todo fluya sin estrés.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FORMULARIO -->
+  <section class="section">
+    <div class="container">
+
+      <h2 class="title has-text-centered is-3">Formulario de Registro</h2>
+
+      <!-- ✅ Usamos form para poder usar preventDefault -->
+      <form class="box" id="formRegistro">
+
+        <div class="field">
+          <label class="label" for="nombre">Nombre completo</label>
+          <input class="input" id="nombre" type="text" placeholder="Ej: Ana María López">
+          <p class="help is-danger is-hidden" id="nombreError">El nombre solo puede contener letras.</p>
+        </div>
+
+        <div class="field">
+          <label class="label" for="email">Correo electrónico</label>
+          <input class="input" id="email" type="email" placeholder="Ej: usuario@mail.com">
+          <p class="help is-danger is-hidden" id="emailError">Email no válido.</p>
+        </div>
+
+        <div class="field">
+          <label class="label" for="mensaje">Mensaje</label>
+          <textarea class="textarea" id="mensaje" placeholder="Escribí tu mensaje aquí..."></textarea>
+          <p class="help is-danger is-hidden" id="mensajeError">El mensaje debe tener al menos 6 caracteres.</p>
+        </div>
+
+        <button id="btnEnviar" class="button is-primary is-fullwidth" disabled>Completar todos los campos</button>
+
+      </form>
+
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div class="modal" id="modalExito">
+    <div class="modal-background"></div>
+
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Registro Exitoso 🎉</p>
+        <button class="delete" id="cerrarModal"></button>
+      </header>
+
+      <section class="modal-card-body">
+        ¡Gracias por contactarte! Te responderemos pronto.
+      </section>
+
+      <footer class="modal-card-foot">
+        <button class="button is-primary is-fullwidth" id="cerrarModalFooter">Cerrar</button>
+      </footer>
+    </div>
+  </div>
+<script>
+  // === VARIABLES ===
+  const nombre = document.getElementById("nombre");
+  const email = document.getElementById("email");
+  const mensaje = document.getElementById("mensaje");
+  const btnEnviar = document.getElementById("btnEnviar");
+  const formRegistro = document.getElementById("formRegistro");
+
+  const modal = document.getElementById("modalExito");
+  const cerrarModal = document.getElementById("cerrarModal");
+  const cerrarModalFooter = document.getElementById("cerrarModalFooter");
+
+  const nombreError = document.getElementById("nombreError");
+  const emailError = document.getElementById("emailError");
+  const mensajeError = document.getElementById("mensajeError");
+
+  // === FLAGS para saber si el usuario tocó cada campo ===
+  let touchedNombre = false;
+  let touchedEmail = false;
+  let touchedMensaje = false;
+
+  // === VALIDACIONES (solo retornan válido o no) ===
+  function esNombreValido() {
+    return /^[a-zA-ZÀ-ÿ\s]{3,}$/.test(nombre.value.trim());
+  }
+
+  function esEmailValido() {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+  }
+
+  function esMensajeValido() {
+    return mensaje.value.trim().length >= 6;
+  }
+
+  // === MOSTRAR/OCULTAR ERRORES SOLAMENTE si el campo fue tocado ===
+  function mostrarErrores() {
+    if (touchedNombre) nombreError.classList.toggle("is-hidden", esNombreValido());
+    if (touchedEmail) emailError.classList.toggle("is-hidden", esEmailValido());
+    if (touchedMensaje) mensajeError.classList.toggle("is-hidden", esMensajeValido());
+  }
+
+  // === BOTÓN INTELIGENTE ===
+  function actualizarBoton() {
+    if (esNombreValido() && esEmailValido() && esMensajeValido()) {
+      btnEnviar.disabled = false;
+      btnEnviar.classList.remove("is-light");
+      btnEnviar.classList.add("is-primary");
+      btnEnviar.textContent = "Enviar los datos ahora!!!";
+    } else {
+      btnEnviar.disabled = true;
+      btnEnviar.classList.remove("is-primary");
+      btnEnviar.classList.add("is-light");
+      btnEnviar.textContent = "Completar todos los campos";
+    }
+  }
+
+  // === EVENTOS EN VIVO SOLO DEL CAMPO EDITADO ===
+  nombre.addEventListener("input", () => { touchedNombre = true; mostrarErrores(); actualizarBoton(); });
+  email.addEventListener("input", () => { touchedEmail = true; mostrarErrores(); actualizarBoton(); });
+  mensaje.addEventListener("input", () => { touchedMensaje = true; mostrarErrores(); actualizarBoton(); });
+
+  // === LIMPIAR FORM ===
+  function limpiarFormulario() {
+    formRegistro.reset();
+    nombreError.classList.add("is-hidden");
+    emailError.classList.add("is-hidden");
+    mensajeError.classList.add("is-hidden");
+    touchedNombre = touchedEmail = touchedMensaje = false;
+
+    btnEnviar.disabled = true;
+    btnEnviar.classList.add("is-light");
+    btnEnviar.textContent = "Completar todos los campos";
+  }
+
+  // === ENVÍO ===
+  formRegistro.addEventListener("submit", (e) => {
+    e.preventDefault();
+    btnEnviar.classList.add("is-loading");
+
+    setTimeout(() => {
+      btnEnviar.classList.remove("is-loading");
+      modal.classList.add("is-active");
+      limpiarFormulario();
+    }, 1500);
+  });
+
+  // === CERRAR MODAL ===
+  cerrarModal.addEventListener("click", () => modal.classList.remove("is-active"));
+  cerrarModalFooter.addEventListener("click", () => modal.classList.remove("is-active"));
+</script>
+
+
+  <!-- JAVASCRIPT A COMPLETAR POR ELLAS -->
+  <script>
+    // 1) Guardar los elementos en variables
+    // const nombre = ...
+    // const email = ...
+    // const mensaje = ...
+    // const btnEnviar = ...
+    // const modal = ...
+    // const cerrarModal = ...
+    // const cerrarModalFooter = ...
+
+    // 2) Validación en vivo para nombre: solo letras y espacios
+    // nombre.addEventListener("input", () => {
+    //   if (/* expresión regular */) {
+    //      // agregar clase is-success
+    //   } else {
+    //      // agregar clase is-danger
+    //   }
+    // });
+
+    // 3) Validación en vivo email
+    // email.addEventListener("input", () => { ... });
+
+    // 4) Validación en vivo mensaje
+    // mensaje.addEventListener("input", () => { ... });
+
+    // 5) Botón inteligente (si todo es válido → cambiar color y texto)
+    // function actualizarBoton() { ... }
+
+    // 6) Abrir modal solo cuando btnEnviar está en estado correcto
+    // btnEnviar.addEventListener("click", () => { ... });
+
+    // 7) Cerrar modal
+    // cerrarModal.addEventListener("click", ... );
+    // cerrarModalFooter.addEventListener("click", ... );
+
+    // 8) HOVER EN CARDS (ellas lo completan)
+    // document.querySelectorAll(".team-card").forEach(card => {
+    //   card.addEventListener("mouseenter", () => {
+    //     // agregar clase de Bulma para resaltar
+    //   });
+    //   card.addEventListener("mouseleave", () => {
+    //     // quitar clase
+    //   });
+    // });
+    
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario con Íconos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+
+  <!-- Íconos de Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="has-background-light">
+
+  <section class="section">
+    <div class="container">
+
+      <!-- Título centrado -->
+      <h1 class="title has-text-centered has-text-primary">😜Registro de Usuario👍</h1>
+
+      <!-- Formulario con id para DOM y estilizado con .box -->
+      <form id="formRegistro" method="POST" class="box">
+
+        <!-- Nombre completo -->
+        <div class="field">
+          <label class="label" for="nombre">Nombre completo</label>
+          <div class="control has-icons-left">
+            <input id="nombre" class="input" type="text" placeholder="Ej: Sofía Rodríguez" required>
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Correo -->
+        <div class="field">
+          <label class="label" for="email">Correo electrónico</label>
+          <div class="control has-icons-left">
+            <input id="email" class="input" type="email" placeholder="ejemplo@correo.com" required>
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="field">
+          <label class="label" for="password">Contraseña</label>
+          <div class="control has-icons-left">
+            <input id="password" class="input" type="password" required>
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Confirmar contraseña -->
+        <div class="field">
+          <label class="label" for="password2">Confirmar contraseña</label>
+          <div class="control has-icons-left">
+            <input id="password2" class="input" type="password" required>
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Extra: Descripción -->
+        <div class="field">
+          <label class="label" for="descripcion">Sobre vos 💬</label>
+          <div class="control">
+            <textarea id="descripcion" class="textarea" placeholder="Contame algo de vos..."></textarea>
+          </div>
+        </div>
+
+        <!-- Botón -->
+        <div class="field has-text-centered">
+          <button class="button is-primary">Registrarme</button>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+</body>
+</html>
