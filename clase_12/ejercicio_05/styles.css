@@ -1,0 +1,94 @@
+/* styles.css */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background: #fff1f2;
+}
+#contenedor {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 400px;
+    border: 1px solid #fecdd3;
+}
+/* --- CLASES MODIFICADAS Y NUEVAS PARA EL ESTILO DE ERROR --- */
+.error-box {
+    margin-top: 20px;
+    padding: 15px;
+    /* Fondo y borde muy similar a la imagen */
+    background-color: #fef2f2; /* Blanco muy sutilmente rosado */
+    border: 1px solid #f87171; /* Rojo medio */
+    border-radius: 6px;
+    text-align: left; /* Alineamos el texto a la izquierda dentro de la caja */
+}
+
+.error-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.error-title {
+    /* Estilo para "⚠️ Error Detectado" */
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #ef4444; /* Rojo fuerte */
+    margin-bottom: 5px; /* Espacio entre el título y el mensaje */
+    display: flex;
+    align-items: center;
+}
+
+.error-message {
+    /* Estilo para "No se pudieron cargar..." */
+    font-size: 1em;
+    color: #dc2626; /* Rojo ligeramente más oscuro para el texto */
+    font-weight: normal;
+}
+/* ----------------------------------------------------------- */
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Estilo para el estado de carga (loading) */
+button.loading {
+    /* Fondo gris oscuro (similar al "Simular Petición Fallida" original, pero puedes hacerlo gris claro si prefieres) */
+    background: #333; 
+    color: #ccc;
+    cursor: default;
+    /* Opacidad sutil para indicar que está inactivo */
+    opacity: 0.8; 
+}
+
+/* Estilo para la flecha giratoria */
+.spinner {
+    display: inline-block;
+    /* Aplica la animación 'spin' */
+    animation: spin 1s linear infinite;
+    margin-right: 5px;
+}
+
+/* Definición de la animación de giro */
+@keyframes spin {
+    0% { 
+        transform: rotate(0deg); 
+    }
+    100% { 
+        transform: rotate(360deg); 
+    }
+}
+
+/* Estilo para el botón deshabilitado (opcional, pero buena práctica) */
+button:disabled {
+    pointer-events: none; /* Asegura que no se pueda hacer clic */
+}
