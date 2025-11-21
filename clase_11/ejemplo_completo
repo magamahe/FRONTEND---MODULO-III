@@ -1,0 +1,123 @@
+// =========================================================
+// OBJETO COMPLEJO BASE
+// =========================================================
+
+const pelicula = {
+  titulo: "Inception",
+  año: 2010,
+  director: {
+    nombre: "Christopher Nolan",
+    pais: "Reino Unido"
+  },
+  reparto: [
+    { nombre: "Leonardo DiCaprio", personaje: "Cobb" },
+    { nombre: "Joseph Gordon-Levitt", personaje: "Arthur" }
+  ],
+  ratings: [8.5, 9.0, 8.7],
+  disponible: true
+};
+
+
+// =========================================================
+// 1️⃣ DESESTRUCTURACIÓN BÁSICA DE OBJETO
+// =========================================================
+
+// Sacamos propiedades del objeto principal
+const { titulo, año, disponible } = pelicula;
+
+console.log("1️⃣", titulo, año, disponible);
+// "Inception" 2010 true
+
+
+// =========================================================
+// 2️⃣ DESESTRUCTURACIÓN ANIDADA
+// =========================================================
+
+// Accedemos dentro de director → nombre y pais
+// Renombramos 'nombre' a 'directorNombre'
+const { director: { nombre: directorNombre, pais } } = pelicula;
+
+console.log("2️⃣", directorNombre, pais);
+// "Christopher Nolan" "Reino Unido"
+
+
+// =========================================================
+// 3️⃣ RENOMBRAR VARIABLES (directorNombre y actorPrincipal)
+// =========================================================
+
+// Del reparto quiero el nombre del primer actor
+const { reparto: [{ nombre: actorPrincipal }] } = pelicula;
+
+console.log("3️⃣", actorPrincipal);
+// "Leonardo DiCaprio"
+
+
+// =========================================================
+// 4️⃣ DESESTRUCTURACIÓN DE ARRAYS + REST
+// =========================================================
+
+// ratings → [8.5, 9.0, 8.7]
+const [primerRating, segundoRating, ...otrosRatings] = pelicula.ratings;
+
+console.log("4️⃣", primerRating, segundoRating, otrosRatings);
+// 8.5 9.0 [8.7]
+
+
+// =========================================================
+// 5️⃣ SPREAD → COPIA INMUTABLE + CAMBIOS
+// =========================================================
+
+// Creamos nueva película SIN modificar la original
+const pelicula2 = {
+  ...pelicula,          // copio TODO
+  disponible: false,    // cambio solo esta parte
+  genero: "Ciencia Ficción" // agrego nueva propiedad
+};
+
+console.log("5️⃣ ORIGINAL:", pelicula.disponible);
+console.log("5️⃣ COPIA:", pelicula2.disponible, pelicula2.genero);
+// true
+// false "Ciencia Ficción"
+
+
+// =========================================================
+// 6️⃣ REST OPERATOR EN OBJETOS
+// =========================================================
+
+// Extraemos 'titulo' y agrupamos el resto
+const { titulo: tituloRest, ...restoPelicula } = pelicula;
+
+console.log("6️⃣", restoPelicula);
+// { año: 2010, director: {...}, reparto: [...], ratings: [...], disponible: true }
+
+
+// =========================================================
+// 7️⃣ SHALLOW COPY vs DEEP COPY
+// =========================================================
+
+// ----------- SHALLOW COPY -----------
+const copiaShallow = { ...pelicula };
+
+// Cambio un valor ANIDADO
+copiaShallow.director.nombre = "Otro Director";
+
+console.log("7️⃣ SHALLOW → original:", pelicula.director.nombre);
+// ⚠ Se modifica el original → "Otro Director"
+
+// Esto pasa porque la copia superficial comparte la referencia del objeto interno
+
+
+// ----------- DEEP COPY -----------
+const copiaDeep = JSON.parse(JSON.stringify(pelicula));
+
+// Ahora sí, cambio un valor ANIDADO sin afectar al original
+copiaDeep.director.nombre = "Nuevo Director";
+
+console.log("7️⃣ DEEP → original:", pelicula.director.nombre);
+console.log("7️⃣ DEEP → copia:", copiaDeep.director.nombre);
+// original sigue siendo "Otro Director" (lo que quedó del shallow)
+// copia es "Nuevo Director"
+
+// Deep copy copia TODO, incluso objetos internos.
+
+
