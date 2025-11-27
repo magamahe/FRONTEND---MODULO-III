@@ -1,0 +1,60 @@
+<!-- Actividad 1: Identificar Problemas de CORS  
+**Objetivo:** Reconocer errores de CORS en la consola del navegador.
+
+### Consigna:
+- Abre una página HTML vacía con un script que intente hacer un **fetch** a una API que no permita CORS  
+  *(ej: https://api.ejemplo-sin-cors.com/data)*.
+- Inspecciona la consola del navegador y anota:  
+  - El mensaje de error que aparece.  
+  - Qué parte del error indica que es un problema de CORS.
+- Explica por qué ocurre esto y qué necesitarías para solucionarlo (sin escribir código).
+ -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Actividad 1 - CORS</title>
+</head>
+<body>
+    <h1>Actividad 1: CORS</h1>
+    <p>Revisá la consola (F12).</p>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
+
+
+<!-- RESPUESTAS:
+ - Mensaje de error: 
+            . GET https://api.ejemplo-sin-cors.com/data net::ERR_NAME_NOT_RESOLVED 
+                El dominio no existe (“NAME NOT RESOLVED” → no se pudo resolver el nombre del servidor).
+            . Error: TypeError: Failed to fetch
+                Esto es simplemente la consecuencia lógica: Como el servidor no existe o no responde, el fetch falla.
+ 
+ - En este caso NO aparece un mensaje de CORS, porque:
+    El dominio no existe o no puede resolverse.
+    Entonces el navegador ni siquiera llega a verificar si hay CORS o no.
+    Falla antes.       
+    ERR_NAME_NOT_RESOLVED  → el dominio no existe
+    Failed to fetch → fallo la conexión
+
+ - Por qué ocurre este error? 
+    Este error ocurre porque:
+        La URL https://api.ejemplo-sin-cors.com/data no apunta a un servidor real.
+        Como el dominio no existe, el navegador no puede conectarse.
+        Y como nunca se establece la conexión, no aparece el error de CORS (Chrome no puede verificar políticas de un servidor que no responde).
+ 
+ - Qué necesitarías para solucionarlo (sin escribir código)
+    Para poder ver un error real de CORS o que la petición funcione, necesitás:
+        Usar una URL que sí exista.
+    
+    Y si querés ver específicamente un error CORS, usar una API real que bloquee CORS (por ejemplo https://google.com).
+    O, si la API fuera real y quisieras solucionarlo:
+        - Que el servidor agregue el encabezado:
+            Access-Control-Allow-Origin: *
+        - O usar un proxy que habilite CORS.
+        - O hacer la petición desde un backend, no desde el navegador.
+-->
