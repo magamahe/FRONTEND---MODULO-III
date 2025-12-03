@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simulador REST - Mini proyecto</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Simulador REST — Mini proyecto</h1>
+    <p class="subtitle">Interactúa con endpoints simulados y ve respuestas JSON y códigos HTTP en tiempo real.</p>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Acciones rápidas</h2>
+      <div class="btn-grid">
+        <button id="btn-get-libros">GET /libros</button>
+        <button id="btn-get-libro-58">GET /libros/58</button>
+        <button id="btn-get-reseñas-58">GET /libros/58/resenas</button>
+        <button id="btn-filtrar-genero">GET /libros?genero=ciencia-ficcion&orden=fecha_desc</button>
+        <button id="btn-post-reseña">POST /libros/58/resenas</button>
+      </div>
+    </section>
+
+    <section class="panel small">
+      <h2>Casos de uso (HTTP)</h2>
+      <div class="btn-grid">
+        <button id="btn-registro">POST /usuarios (registro)</button>
+        <button id="btn-eliminar-producto">DELETE /productos/999 (no existe)</button>
+        <button id="btn-actualizar-email">PATCH /usuarios/15 (email)</button>
+        <button id="btn-pedidos-recientes">GET /pedidos?recientes=true</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Editar post (ID 15)</h2>
+      <div class="form-row">
+        <input id="post-title" placeholder="Nuevo título para el post 15" />
+        <button id="btn-edit-post">PATCH /posts/15</button>
+      </div>
+    </section>
+
+    <section class="panel output">
+      <h2>Salida / Consola</h2>
+      <div id="console" class="console"></div>
+    </section>
+
+    <section class="panel visual">
+      <h2>Vista de datos</h2>
+      <div id="vista-datos" class="cards"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Proyecto entregable — Simulador REST · Hecho para prácticas.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
