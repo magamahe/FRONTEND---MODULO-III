@@ -1,6 +1,13 @@
+
 .simpson-title {
   font-family: 'Akbar', sans-serif;
   font-size: 2.5rem;
   color: #FFD300;
   -webkit-text-stroke: 2px #000; /* borde negro */
+}
+.simpson-subtitle {
+  font-family: 'Homer Simpson Revised', sans-serif !important;
+  font-size: 3rem !important;
+  color: #7455c9 !important;
+  -webkit-text-stroke: 3px #000 !important;
 }
