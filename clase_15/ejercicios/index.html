@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API REST Demo - JSONPlaceholder</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+<body class="bg-gray-50 min-h-screen p-6 font-sans">
+
+  <!-- Título principal -->
+  <h1 class="text-3xl font-bold text-center mb-6 text-blue-700">API REST Demo</h1>
+
+  <!-- Sección de búsqueda -->
+  <div class="flex justify-center mb-4 gap-2">
+    <input type="text" id="searchInput" placeholder="Buscar por título..." class="border rounded px-3 py-1 w-64">
+    <button id="searchBtn" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Buscar</button>
+    <button id="limitBtn" class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600">Mostrar 10</button>
+
+  </div>
+
+  <!-- Lista de posts -->
+  <ul id="postsList" class="max-w-2xl mx-auto space-y-2"></ul>
+
+  <!-- Formulario para crear nuevo post -->
+  <h2 id="formTitle" class="text-2xl font-semibold mt-8 mb-4 text-blue-700 text-center">Crear Nuevo Post</h2>
+  <form id="postForm" class="max-w-xl mx-auto flex flex-col gap-2 bg-white p-4 rounded shadow">
+    <input type="text" id="title" placeholder="Título" required class="border px-3 py-1 rounded">
+    <textarea id="body" placeholder="Contenido" required class="border px-3 py-1 rounded"></textarea>
+    <button  id="submitBtn" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Crear Post</button>
+  </form>
+<div id="status" class="mt-4"></div>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>
