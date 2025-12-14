@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 4: Implementación de Filtros Múltiples</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; padding: 30px; background-color: #f8ff8; color: #333; }
+        h1 { color: #007bff; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .search-controls { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end; }
+        .control-group { display: flex; flex-direction: column; }
+        input[type="number"], select { padding: 10px; border: 1px solid #ccc; border-radius: 4px; width: 150px; }
+        button { background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; }
+        button:hover { background-color: #0056b3; }
+        
+        #results-container { margin-top: 30px; }
+        .post-item { background-color: #e9ecef; border-left: 5px solid #007bff; padding: 15px; margin-bottom: 10px; border-radius: 4px; }
+        .post-item h4 { margin-top: 0; color: #343a40; }
+        .post-item small { color: #6c757d; }
+        .info-url { margin-top: 10px; font-style: italic; color: #555; }
+    </style>
+</head>
+<body>
+
+    <h1>Actividad 4: Implementación de Filtros Múltiples</h1>
+    
+    <div class="search-controls">
+        <div class="control-group">
+            <label for="userIdInput">1. Filtrar por ID de Usuario (1-10):</label>
+            <input type="number" id="userIdInput" value="1" min="1" max="10">
+        </div>
+
+        <div class="control-group">
+            <label for="sortField">2. Ordenar por Campo (`_sort`):</label>
+            <select id="sortField">
+                <option value="id">ID</option>
+                <option value="title">Título</option>
+                <option value="userId">User ID</option>
+            </select>
+        </div>
+        
+        <div class="control-group">
+            <label for="sortOrder">3. Dirección de Ordenamiento (`_order`):</label>
+            <select id="sortOrder">
+                <option value="asc">Ascendente (A-Z, 1-10)</option>
+                <option value="desc">Descendente (Z-A, 10-1)</option>
+            </select>
+        </div>
+
+        <button onclick="searchPosts()">Aplicar Filtros y Buscar</button>
+        <p id="dynamicUrl" class="info-url"></p>
+    </div>
+
+    <h2>Resultados Filtrados</h2>
+    <div id="results-container">
+        <p>Ajusta los filtros y haz clic en "Aplicar Filtros y Buscar".</p>
+    </div>
+
+    <script>
+        const BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
+        const resultsContainer = document.getElementById('results-container');
+        const dynamicUrlElement = document.getElementById('dynamicUrl');
+        
+        /**
+         * Realiza la solicitud a la API construyendo la URL con múltiples filtros.
+         */
+        async function searchPosts() {
+            resultsContainer.innerHTML = '<p>Cargando resultados...</p>';
+            dynamicUrlElement.textContent = '';
+            
+            const userId = document.getElementById('userIdInput').value;
+            const sortField = document.getElementById('sortField').value;
+            const sortOrder = document.getElementById('sortOrder').value;
+
+            // 1. Inicializar el objeto URLSearchParams
+            const params = new URLSearchParams();
+
+            // 2. Aplicar el Filtro de Colección (userId)
+            if (userId) {
+                params.append('userId', userId);
+            }
+            
+            // 3. Aplicar Parámetros de Ordenamiento (_sort y _order)
+            if (sortField) {
+                params.append('_sort', sortField);
+            }
+            if (sortOrder) {
+                params.append('_order', sortOrder);
+            }
+
+            // Opcional: Limitar resultados para mejor visualización
+            params.append('_limit', 5); 
+
+            // 4. Construir la URL completa
+            // Ejemplo URL: .../posts?userId=1&_sort=title&_order=asc&_limit=5
+            const finalUrl = `${BASE_URL}?${params.toString()}`;
+            dynamicUrlElement.textContent = `URL de Consulta: ${finalUrl}`;
+            console.log('URL Generada con Múltiples Filtros:', finalUrl);
+            
+            try {
+                // 5. Realizar la solicitud FETCH
+                const response = await fetch(finalUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+
+                const posts = await response.json();
+
+                // 6. Mostrar los resultados
+                renderResults(posts, userId, sortField, sortOrder);
+
+            } catch (error) {
+                resultsContainer.innerHTML = `<p style="color: red;">Error al obtener los datos: ${error.message}.</p>`;
+            }
+        }
+
+        /**
+         * Función para renderizar los resultados.
+         */
+        function renderResults(posts, userId, sortField, sortOrder) {
+            if (posts.length === 0) {
+                resultsContainer.innerHTML = `<p>No se encontraron posts para el Usuario ID ${userId}.</p>`;
+                return;
+            }
+
+            let htmlContent = `<h4>Resultados (Filtrados por User ID ${userId} y ordenados por ${sortField} ${sortOrder.toUpperCase()}):</h4>`;
+
+            posts.forEach(post => {
+                htmlContent += `
+                    <div class="post-item">
+                        <h4>${post.title}</h4>
+                        <p>${post.body.substring(0, 100)}...</p>
+                        <small>Post ID: ${post.id} | User ID: ${post.userId}</small>
+                    </div>
+                `;
+            });
+
+            resultsContainer.innerHTML = htmlContent;
+        }
+
+        // Ejecutar una búsqueda inicial al cargar la página
+        window.onload = searchPosts;
+    </script>
+
+</body>
+</html>

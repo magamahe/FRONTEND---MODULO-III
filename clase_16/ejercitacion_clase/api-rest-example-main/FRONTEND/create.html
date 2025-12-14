@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuevo Producto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+  <form id="productForm" class="bg-white p-6 rounded-xl shadow w-full max-w-md space-y-4">
+    <h1 class="text-xl font-bold text-center">➕ Nuevo Producto</h1>
+
+    <input class="w-full border p-2 rounded" placeholder="Nombre" name="name" required />
+    <input class="w-full border p-2 rounded" placeholder="Descripción" name="description" required />
+    <input class="w-full border p-2 rounded" type="number" placeholder="Precio" name="price" required />
+    <input class="w-full border p-2 rounded" type="number" placeholder="Stock" name="stock" />
+    <input class="w-full border p-2 rounded" placeholder="Categoría" name="category" required />
+    <input class="w-full border p-2 rounded" placeholder="Marca" name="brand" required />
+
+    <button class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">
+      Guardar
+    </button>
+
+    <a href="index.html" class="block text-center text-indigo-600 text-sm">← Volver</a>
+  </form>
+
+  <script>
+    const form = document.getElementById("productForm");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = Object.fromEntries(new FormData(form));
+
+      await fetch("http://localhost:3000/api/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      window.location.href = "index.html";
+    });
+  </script>
+
+</body>
+</html>

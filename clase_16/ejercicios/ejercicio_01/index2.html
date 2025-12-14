@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONPlaceholder con Fetch</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f9; }
+        .post { background-color: white; border: 1px solid #ddd; margin-bottom: 15px; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .post h3 { color: #333; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        .post p { color: #555; }
+        #posts-container { margin-top: 20px; }
+        h2 { color: #007bff; }
+    </style>
+</head>
+<body>
+
+    <h2>Posts del Usuario ID 1 (Limitado a 5)</h2>
+
+    <div id="posts-container">
+        <p>Cargando datos...</p>
+    </div>
+
+    <script>
+        // URL de la API con los parámetros de búsqueda: userId=1 y _limit=5
+        const API_URL = 'https://jsonplaceholder.typicode.com/posts?userId=1&_limit=5';
+        const container = document.getElementById('posts-container');
+
+        // Función asíncrona para obtener y mostrar los datos
+        async function fetchPosts() {
+            try {
+                // 1. Realizar la solicitud HTTP GET
+                const response = await fetch(API_URL);
+
+                // Verificar si la respuesta fue exitosa (código 200 OK)
+                if (!response.ok) {
+                    throw new Error(`Error en la solicitud: ${response.statusText}`);
+                }
+
+                // 2. Convertir la respuesta a formato JSON
+                const posts = await response.json();
+
+                // 3. Limpiar el mensaje de "Cargando..."
+                container.innerHTML = ''; 
+
+                // 4. Iterar sobre los posts y crear el HTML
+                posts.forEach(post => {
+                    const postDiv = document.createElement('div');
+                    postDiv.className = 'post';
+                    postDiv.innerHTML = `
+                        <h3>${post.title}</h3>
+                        <p>${post.body}</p>
+                        <small>ID: ${post.id} | User ID: ${post.userId}</small>
+                    `;
+                    container.appendChild(postDiv);
+                });
+
+                // Ejemplo: Muestra cómo se ve el proceso de solicitud/respuesta en la web.
+                
+
+            } catch (error) {
+                console.error("Hubo un problema al obtener los posts:", error);
+                container.innerHTML = `<p style="color: red;">Error al cargar los datos: ${error.message}</p>`;
+            }
+        }
+
+        // Llamar a la función para iniciar el proceso de carga
+        fetchPosts();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 2: Colecciones vs. Recursos</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; padding: 30px; background-color: #f8f8f8; color: #333; }
+        h1 { color: #007bff; }
+        .comparison-area { margin-top: 20px; padding: 20px; border: 1px solid #ccc; background-color: white; border-radius: 8px; }
+        .comparison-area h2 { color: #333; }
+        button { background-color: #ffc107; color: #333; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+        button:hover { background-color: #e0a800; }
+        pre { background-color: #eee; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        .request-output { margin-bottom: 20px; padding: 10px; border: 1px dashed #ddd; }
+    </style>
+</head>
+<body>
+
+    <h1>Actividad 2: Colecciones vs. Recursos Individuales (JSONPlaceholder)</h1>
+    <p>Abre la **Consola del Navegador (F12)** para ver la estructura, el tamaño y la diferencia de los datos obtenidos.</p>
+
+    <button onclick="runComparison()">Ejecutar Peticiones y Comparar</button>
+
+    <div class="comparison-area">
+        <h2>Diferencias Clave en la Respuesta</h2>
+        <div id="comparison-output">Haga clic en el botón para ejecutar ambas peticiones y ver el resultado del análisis.</div>
+    </div>
+
+    <script>
+        const BASE_URL = 'https://jsonplaceholder.typicode.com';
+
+        // Petición 1: Obtener una COLECCIÓN completa (Todos los Posts)
+        async function getCollection() {
+            const url = `${BASE_URL}/posts`;
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log('--- PETICIÓN DE COLECCIÓN (/posts) ---');
+            console.log('1. URL Utilizada:', url);
+            console.log('2. Tipo de Dato (JSON):', Array.isArray(data) ? 'Array (Arreglo/Lista)' : 'Objeto');
+            console.log('3. Tamaño de la Colección:', data.length);
+            console.log('4. Respuesta Completa (Los primeros 2 elementos):', data.slice(0, 2));
+            return data;
+        }
+
+        // Petición 2: Obtener un RECURSO INDIVIDUAL (Post con ID 5)
+        async function getResource() {
+            const resourceId = 5;
+            const url = `${BASE_URL}/posts/${resourceId}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log('\n--- PETICIÓN DE RECURSO INDIVIDUAL (/posts/5) ---');
+            console.log('1. URL Utilizada:', url);
+            console.log('2. Tipo de Dato (JSON):', Array.isArray(data) ? 'Array (Arreglo/Lista)' : 'Objeto');
+            console.log('3. Propiedades del Objeto:', Object.keys(data));
+            console.log('4. Respuesta Completa:', data);
+            return data;
+        }
+
+        // Función principal para ejecutar y comparar
+        async function runComparison() {
+            try {
+                // Ejecutar ambas peticiones
+                const collection = await getCollection();
+                const resource = await getResource();
+
+                // Anotar y mostrar las diferencias
+                const output = document.getElementById('comparison-output');
+                output.innerHTML = `
+                    <h3>Análisis de Resultados (Ver Consola F12 para detalles)</h3>
+                    
+                    <h4>Respuesta de Colección (<small>${BASE_URL}/posts</small>):</h4>
+                    <ul>
+                        <li>**Estructura:** Array (Arreglo de Objetos).</li>
+                        <li>**Tamaño:** Contiene ${collection.length} objetos.</li>
+                        <li>**URL:** Termina en el nombre del recurso (/posts).</li>
+                    </ul>
+
+                    <h4>Respuesta de Recurso Individual (<small>${BASE_URL}/posts/5</small>):</h4>
+                    <ul>
+                        <li>**Estructura:** Object (Objeto simple).</li>
+                        <li>**Tamaño:** Contiene 1 objeto (no es una lista).</li>
+                        <li>**URL:** Termina en el ID del recurso (/posts/5).</li>
+                    </ul>
+                    
+                    <p style="font-style: italic; margin-top: 15px;">**Conclusión:** La Colección siempre devuelve una lista (Array), mientras que el Recurso Individual devuelve el objeto directamente (Objeto).</p>
+                `;
+                 
+
+            } catch (error) {
+                document.getElementById('comparison-output').innerHTML = `<p style="color: red;">Error al ejecutar las peticiones: ${error.message}</p>`;
+                console.error('Error durante la comparación:', error);
+            }
+        }
+    </script>
+
+</body>
+</html>

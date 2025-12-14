@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 3: searchParams y Filtrado</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; padding: 30px; background-color: #f8f8f8; color: #333; }
+        h1 { color: #007bff; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .search-controls { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        input[type="number"] { padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-right: 10px; width: 150px; }
+        button { background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; }
+        button:hover { background-color: #0056b3; }
+        
+        #results-container { margin-top: 30px; }
+        .post-item { background-color: #e9ecef; border-left: 5px solid #007bff; padding: 15px; margin-bottom: 10px; border-radius: 4px; }
+        .post-item h4 { margin-top: 0; color: #343a40; }
+        .post-item small { color: #6c757d; }
+        .info-url { margin-top: 10px; font-style: italic; color: #555; }
+    </style>
+</head>
+<body>
+
+    <h1>Actividad 3: Búsqueda Dinámica con `URLSearchParams`</h1>
+    <p>Utiliza los IDs de usuario del 1 al 10 para ver resultados de JSONPlaceholder.</p>
+
+    <div class="search-controls">
+        <label for="userIdInput">Buscar Posts por ID de Usuario (1-10):</label>
+        <input type="number" id="userIdInput" value="1" min="1" max="10">
+        <button onclick="searchPosts()">Buscar Posts</button>
+        <p id="dynamicUrl" class="info-url"></p>
+    </div>
+
+    <h2>Resultados Filtrados</h2>
+    <div id="results-container">
+        <p>Introduce un ID y haz clic en Buscar para obtener los posts.</p>
+    </div>
+
+    <script>
+        const BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
+        const resultsContainer = document.getElementById('results-container');
+        const dynamicUrlElement = document.getElementById('dynamicUrl');
+
+        /**
+         * Función principal que construye la URL y realiza la petición.
+         */
+        async function searchPosts() {
+            resultsContainer.innerHTML = '<p>Cargando resultados...</p>';
+            dynamicUrlElement.textContent = '';
+            
+            const userId = document.getElementById('userIdInput').value;
+
+            // 1. Crear el objeto URLSearchParams
+            const params = new URLSearchParams();
+
+            // 2. Añadir parámetros condicionalmente
+            if (userId) {
+                // Esto añade "?userId=X" a la URL base
+                params.append('userId', userId);
+            }
+            
+            // Opcional: Añadir paginación (limita a 5 resultados para la demostración)
+            params.append('_limit', 5); 
+
+            // 3. Construir la URL completa
+            // Convertimos los parámetros a string y los concatenamos a la URL base
+            const finalUrl = `${BASE_URL}?${params.toString()}`;
+            dynamicUrlElement.textContent = `URL de Consulta: ${finalUrl}`;
+            console.log('URL Generada:', finalUrl);
+            
+            // Imagen que ilustra el proceso de construcción de la URL con parámetros de búsqueda.
+            
+
+            try {
+                // 4. Realizar la solicitud FETCH
+                const response = await fetch(finalUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+
+                const posts = await response.json();
+
+                // 5. Mostrar los resultados
+                renderResults(posts, userId);
+
+            } catch (error) {
+                resultsContainer.innerHTML = `<p style="color: red;">Error al obtener los datos: ${error.message}. Verifica el ID.</p>`;
+                dynamicUrlElement.textContent = `Error en la solicitud.`;
+            }
+        }
+
+        /**
+         * Función para renderizar la lista de resultados en el HTML.
+         */
+        function renderResults(posts, userId) {
+            if (posts.length === 0) {
+                resultsContainer.innerHTML = `<p>No se encontraron posts para el Usuario ID ${userId}.</p>`;
+                return;
+            }
+
+            let htmlContent = `<h4>Se encontraron ${posts.length} posts para el Usuario ID ${userId}:</h4>`;
+
+            posts.forEach(post => {
+                htmlContent += `
+                    <div class="post-item">
+                        <h4>${post.title}</h4>
+                        <p>${post.body.substring(0, 100)}...</p>
+                        <small>Post ID: ${post.id}</small>
+                    </div>
+                `;
+            });
+
+            resultsContainer.innerHTML = htmlContent;
+        }
+
+        // Ejecutar una búsqueda inicial al cargar la página
+        window.onload = searchPosts;
+
+    </script>
+
+</body>
+</html>

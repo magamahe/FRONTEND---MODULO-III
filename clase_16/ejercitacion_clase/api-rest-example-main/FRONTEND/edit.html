@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar Producto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+  <form id="form" class="bg-white p-6 rounded-xl shadow w-full max-w-md space-y-4">
+    <h1 class="text-xl font-bold text-center">✏️ Editar Producto</h1>
+
+    <input class="w-full border p-2 rounded" name="name" required />
+    <input class="w-full border p-2 rounded" name="description" required />
+    <input class="w-full border p-2 rounded" type="number" name="price" required />
+    <input class="w-full border p-2 rounded" type="number" name="stock" />
+    <input class="w-full border p-2 rounded" name="category" required />
+    <input class="w-full border p-2 rounded" name="brand" required />
+
+    <button class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">
+      Guardar cambios
+    </button>
+
+    <a href="index.html" class="block text-center text-indigo-600 text-sm">← Volver</a>
+  </form>
+
+  <script>
+    const API_URL = "http://localhost:3000/api/products";
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const form = document.getElementById("form");
+
+    fetch(`${API_URL}/${id}`)
+      .then(res => res.json())
+      .then(r => {
+        Object.keys(r.data).forEach(key => {
+          if (form[key]) form[key].value = r.data[key];
+        });
+      });
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+
+      await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      window.location.href = "index.html";
+    });
+  </script>
+
+</body>
+</html>

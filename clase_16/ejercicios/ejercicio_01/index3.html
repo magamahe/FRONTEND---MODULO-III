@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 1: Exploración y Demostración de API (JSONPlaceholder)</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; padding: 30px; background-color: #f8f8f8; color: #333; }
+        h1, h2 { color: #007bff; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        
+        /* Estilos de la Tabla Resumen (Análisis de Documentación) */
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 0.9em; min-width: 400px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #007bff; color: white; }
+        tr:nth-of-type(even) { background-color: #f3f3f3; }
+        tr:hover { background-color: #f1f1f1; }
+
+        /* Estilos de la Demostración Funcional (CRUD) */
+        .crud-section { margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px; }
+        .operation { background-color: white; border: 1px solid #ddd; margin-bottom: 20px; padding: 15px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .operation h3 { color: #333; margin-top: 0; }
+        button { background-color: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; }
+        button:hover { background-color: #1e7e34; }
+        .result { margin-top: 10px; font-weight: bold; padding: 5px; border-radius: 3px; }
+        .result.error { color: #842029; background-color: #f8d7da; border: 1px solid #f5c2c7; }
+        .result.success { color: #0f5132; background-color: #d1e7dd; border: 1px solid #badbcc; }
+    </style>
+</head>
+<body>
+
+    <h1>Actividad 1: Exploración de Documentación de APIs (JSONPlaceholder)</h1>
+
+    <h2>Análisis de Endpoints y Métodos HTTP</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Recurso</th>
+                <th>Endpoint para Colección</th>
+                <th>Método HTTP Soportado (Colección)</th>
+                <th>Métodos Soportados (Item)</th>
+                <th>Parámetros de Búsqueda Comunes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>**Posts**</td>
+                <td>`/posts`</td>
+                <td>`GET`, `POST`</td>
+                <td>`GET`, `PUT`, `PATCH`, `DELETE`</td>
+                <td>`?userId=...`, `?_page=...`, `?_limit=...`, `?_sort=...`, `?q=...`</td>
+            </tr>
+            <tr>
+                <td>**Comments**</td>
+                <td>`/comments`</td>
+                <td>`GET`, `POST`</td>
+                <td>`GET`, `PUT`, `PATCH`, `DELETE`</td>
+                <td>`?postId=...`, `?email=...`, `?_page=...`, `?_limit=...`, `?q=...`</td>
+            </tr>
+            <tr>
+                <td>**Albums**</td>
+                <td>`/albums`</td>
+                <td>`GET`, `POST`</td>
+                <td>`GET`, `PUT`, `PATCH`, `DELETE`</td>
+                <td>`?userId=...`, `?title=...`, `?_page=...`, `?_limit=...`, `?_sort=...`</td>
+            </tr>
+            <tr>
+                <td>**Photos**</td>
+                <td>`/photos`</td>
+                <td>`GET`, `POST`</td>
+                <td>`GET`, `PUT`, `PATCH`, `DELETE`</td>
+                <td>`?albumId=...`, `?title=...`, `?_page=...`, `?_limit=...`, `?q=...`</td>
+            </tr>
+            <tr>
+                <td>**Todos**</td>
+                <td>`/todos`</td>
+                <td>`GET`, `POST`</td>
+                <td>`GET`, `PUT`, `PATCH`, `DELETE`</td>
+                <td>`?userId=...`, `?completed=true/false`, `?_page=...`, `?_limit=...`, `?_sort=...`</td>
+            </tr>
+            <tr>
+                <td>**Users**</td>
+                <td>`/users`</td>
+                <td>`GET`, `POST`</td>
+                <td>`GET`, `PUT`, `PATCH`, `DELETE`</td>
+                <td>`?username=...`, `?email=...`, `?_page=...`, `?_limit=...`, `?q=...`</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="crud-section">
+        <h2>Demostración Funcional de Métodos HTTP (CRUD)</h2>
+        <p>Haz clic en los botones para ejecutar las solicitudes. Los resultados de la API se mostrarán aquí y en detalle en la **Consola del Navegador (F12)**.</p>
+        
+        <div class="operation">
+            <h3>1. GET (Leer Colección con Filtro)</h3>
+            <p>Obtiene los primeros **3 posts** del **usuario ID 1**. (Usa los filtros `userId` y `_limit`).</p>
+            <button onclick="performGet()">Ejecutar GET</button>
+            <div id="getResult" class="result">Esperando ejecución...</div>
+        </div>
+
+        <div class="operation">
+            <h3>2. POST (Crear Nuevo Recurso)</h3>
+            <p>Crea un nuevo post en la colección `/posts`.</p>
+            <button onclick="performPost()">Ejecutar POST</button>
+            <div id="postResult" class="result">Esperando ejecución...</div>
+        </div>
+
+        <div class="operation">
+            <h3>3. PUT (Reemplazar Recurso)</h3>
+            <p>Reemplaza completamente el contenido del Post ID 1.</p>
+            <button onclick="performPut()">Ejecutar PUT</button>
+            <div id="putResult" class="result">Esperando ejecución...</div>
+        </div>
+
+        <div class="operation">
+            <h3>4. DELETE (Eliminar Recurso)</h3>
+            <p>Simula la eliminación del Post ID 1.</p>
+            <button onclick="performDelete()">Ejecutar DELETE</button>
+            <div id="deleteResult" class="result">Esperando ejecución...</div>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = 'https://jsonplaceholder.typicode.com';
+
+        // Función auxiliar para mostrar mensajes en el HTML y la consola
+        function displayResult(elementId, message, isSuccess = true, data = null) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = 'result ' + (isSuccess ? 'success' : 'error');
+            if (data !== null) {
+                console.log(`[${elementId}] Datos de respuesta:`, data);
+            } else {
+                 console.log(`[${elementId}] Mensaje: ${message}`);
+            }
+        }
+
+        // --- 1. GET (READ) ---
+        async function performGet() {
+            const url = `${BASE_URL}/posts?userId=1&_limit=3`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                displayResult('getResult', `✅ Éxito: Se obtuvieron ${data.length} posts del usuario ID 1.`, true, data);
+            } catch (error) {
+                displayResult('getResult', `❌ Error en GET: ${error.message}`, false);
+            }
+        }
+
+        // --- 2. POST (CREATE) ---
+        async function performPost() {
+            const newPost = {
+                title: 'Post Creado con POST',
+                body: 'Este es el cuerpo de mi nuevo post. Se le asignará un ID simulado.',
+                userId: 99
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/posts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newPost),
+                });
+                const data = await response.json();
+                displayResult('postResult', `✅ Éxito: Post creado con ID simulado ${data.id}.`, true, data);
+            } catch (error) {
+                displayResult('postResult', `❌ Error en POST: ${error.message}`, false);
+            }
+        }
+
+        // --- 3. PUT (UPDATE) ---
+        async function performPut() {
+            const postId = 1; 
+            const updatedData = {
+                id: postId,
+                title: 'REEMPLAZADO COMPLETAMENTE (PUT)',
+                body: 'Contenido nuevo y completo para el post.',
+                userId: 1, 
+            };
+
+            try {
+                const response = await fetch(`${BASE_URL}/posts/${postId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updatedData),
+                });
+                const data = await response.json();
+                displayResult('putResult', `✅ Éxito: Post ID ${data.id} actualizado mediante PUT.`, true, data);
+            } catch (error) {
+                displayResult('putResult', `❌ Error en PUT: ${error.message}`, false);
+            }
+        }
+
+        // --- 4. DELETE (DELETE) ---
+        async function performDelete() {
+            const postId = 1; 
+            
+            try {
+                const response = await fetch(`${BASE_URL}/posts/${postId}`, {
+                    method: 'DELETE',
+                });
+                
+                if (response.ok) {
+                    // El servidor JSONPlaceholder devuelve un 200 OK con cuerpo vacío para DELETE
+                    displayResult('deleteResult', `✅ Éxito: Post ID ${postId} simuladamente eliminado (status 200 OK).`, true, {});
+                } else {
+                    throw new Error(`Estado: ${response.status}`);
+                }
+            } catch (error) {
+                displayResult('deleteResult', `❌ Error en DELETE: ${error.message}`, false);
+            }
+        }
+    </script>
+
+</body>
+</html>

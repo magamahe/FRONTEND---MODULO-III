@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actividad 3 – Filtro con searchParams</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-pink-50 min-h-screen">
+
+<header class="bg-pink-300 text-white py-4 shadow-md">
+  <h1 class="text-center text-2xl font-bold">Actividad 3 – Búsqueda con searchParams</h1>
+</header>
+
+<main class="max-w-3xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg border border-pink-200">
+
+  <p class="text-gray-700 mb-6">
+    En esta actividad creamos una URL dinámica usando <b>URLSearchParams</b> para
+    filtrar los posts por <b>userId</b>.
+  </p>
+
+  <div class="flex gap-3 mb-6">
+    <input id="user" type="number" placeholder="User ID"
+      class="flex-1 px-3 py-2 border rounded-lg border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-400">
+    
+    <button id="buscar"
+      class="px-4 py-2 bg-pink-400 text-white rounded-lg hover:bg-pink-500 transition">
+      Buscar
+    </button>
+  </div>
+
+  <ul id="lista" class="space-y-2"></ul>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
