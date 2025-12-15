@@ -6,51 +6,116 @@
   <title>Users App - Frontend</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-50 min-h-screen p-6">
-  <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-6">
-    <h1 class="text-2xl font-semibold mb-4">Users App</h1>
+  
+  <main class="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-6">
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-      <div>
-        <input id="searchName" placeholder="Buscar por nombre" class="w-full p-2 border rounded" />
-      </div>
-      <div>
-        <select id="sortOrder" class="w-full p-2 border rounded">
-          <option value="asc">Ordenar nombre (asc)</option>
-          <option value="desc">Ordenar nombre (desc)</option>
-        </select>
-      </div>
-      <div class="flex gap-2">
-        <button id="btnSearch" class="px-4 py-2 bg-indigo-600 text-white rounded">Buscar</button>
-        <button id="btnRefresh" class="px-4 py-2 bg-gray-200 rounded">Refrescar</button>
-      </div>
-    </div>
+    <!-- Header -->
+    <header class="mb-6">
+      <h1 class="text-2xl font-semibold">Users App</h1>
+    </header>
 
-    <div class="mb-6">
+    <!-- Filtros -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <input
+        id="searchName"
+        placeholder="Buscar por nombre"
+        class="w-full p-2 border rounded"
+      />
+
+      <select id="sortOrder" class="w-full p-2 border rounded">
+        <option value="asc">Ordenar nombre (asc)</option>
+        <option value="desc">Ordenar nombre (desc)</option>
+      </select>
+
+      <nav class="flex gap-2">
+        <button
+          id="btnSearch"
+          class="px-4 py-2 bg-indigo-600 text-white rounded"
+        >
+          Buscar
+        </button>
+        <button
+          id="btnRefresh"
+          class="px-4 py-2 bg-gray-200 rounded"
+        >
+          Refrescar
+        </button>
+      </nav>
+    </section>
+
+    <!-- Estadísticas -->
+    <section class="mb-6">
       <h2 class="font-medium">Estadísticas</h2>
-      <div id="stats" class="mt-2 text-sm text-gray-700"></div>
-    </div>
+      <output id="stats" class="mt-2 text-sm text-gray-700"></output>
+    </section>
 
-    <div class="mb-6">
+    <!-- Formulario -->
+    <section class="mb-6">
       <h2 class="font-medium">Crear / Editar usuario</h2>
-      <form id="userForm" class="grid grid-cols-1 md:grid-cols-4 gap-2 mt-2">
-        <input id="name" placeholder="Nombre" class="p-2 border rounded col-span-2" required />
-        <input id="email" placeholder="Email" class="p-2 border rounded" required />
-        <input id="age" placeholder="Edad" type="number" class="p-2 border rounded" required />
-        <input id="phone" placeholder="Teléfono" class="p-2 border rounded" />
-        <input type="hidden" id="userId" />
-        <div class="col-span-4 flex gap-2 mt-2">
-          <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded">Guardar</button>
-          <button type="button" id="btnClear" class="px-4 py-2 bg-gray-200 rounded">Limpiar</button>
-        </div>
-      </form>
-    </div>
 
-    <div>
+      <form
+        id="userForm"
+        class="grid grid-cols-1 md:grid-cols-4 gap-2 mt-2"
+      >
+        <input
+          id="name"
+          placeholder="Nombre"
+          class="p-2 border rounded col-span-2"
+          required
+        />
+        <input
+          id="email"
+          placeholder="Email"
+          class="p-2 border rounded"
+          required
+        />
+       <input
+  id="age"
+  type="number"
+  min="0"
+  max="100"
+  placeholder="Edad (0 a 100)"
+  class="p-2 border rounded"
+  required
+/><p id="ageError" class="text-sm text-red-500 hidden">
+  La edad debe estar entre 0 y 100
+</p>
+
+        <input
+          id="phone"
+          placeholder="Teléfono"
+          class="p-2 border rounded"
+        />
+
+        <input type="hidden" id="userId" />
+
+        <footer class="col-span-4 flex gap-2 mt-2">
+          <button
+            type="submit"
+            class="px-4 py-2 bg-green-600 text-white rounded"
+          >
+            Guardar
+          </button>
+          <button
+            type="button"
+            id="btnClear"
+            class="px-4 py-2 bg-gray-200 rounded"
+          >
+            Limpiar
+          </button>
+        </footer>
+      </form>
+    </section>
+
+    <!-- Listado -->
+    <section>
       <h2 class="font-medium mb-2">Usuarios</h2>
-      <div id="usersList" class="grid gap-3"></div>
-    </div>
-  </div>
+      <section id="usersList" class="grid gap-3"></section>
+    </section>
+
+  </main>
 
   <script src="app.js"></script>
 </body>

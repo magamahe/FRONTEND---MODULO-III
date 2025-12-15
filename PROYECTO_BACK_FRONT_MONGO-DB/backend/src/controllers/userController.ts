@@ -26,12 +26,41 @@ export const getUserById = async (req: Request, res: Response) => {
 export const createUser = async (req: Request, res: Response) => {
   try {
     const { name, email, age, phone } = req.body;
-    const newUser = new User({ name, email, age, phone });
-    await newUser.save();
-    res.status(201).json(newUser);
-  } catch (err:any) {
-    if (err.code === 11000) return res.status(409).json({ error: 'Email already exists' });
-    res.status(500).json({ error: 'Server error', details: err.message });
+
+    // Validaciones básicas
+    if (!name || !email || age == null) {
+      return res.status(400).json({
+        error: 'Name, email and age are required'
+      });
+    }
+
+    if (typeof age !== 'number' || age < 0 || age > 100) {
+      return res.status(400).json({
+        error: 'Age must be a number between 0 and 100'
+      });
+    }
+
+    const newUser = await User.create({
+      name: name.trim(),
+      email: email.toLowerCase().trim(),
+      age,
+      phone
+    });
+
+    return res.status(201).json(newUser);
+
+  } catch (err: any) {
+    console.error('CREATE USER ERROR:', err);
+
+    if (err.code === 11000) {
+      return res.status(409).json({ error: 'Email already exists' });
+    }
+
+    if (err.name === 'ValidationError') {
+      return res.status(400).json({ error: err.message });
+    }
+
+    return res.status(500).json({ error: 'Server error' });
   }
 };
 
@@ -74,7 +103,13 @@ export const searchByName = async (req: Request, res: Response) => {
 export const sortByName = async (req: Request, res: Response) => {
   try {
     const order = req.query.order === 'desc' ? -1 : 1;
-    const users = await User.find().sort({ name: order });
+
+    const users = await User
+      .find()
+      //collation para que ordene correctamente con tildes y ñ
+      .collation({ locale: 'es', strength: 1 }) // 👈 
+      .sort({ name: order });
+
     res.json(users);
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
